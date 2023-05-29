@@ -1,0 +1,17 @@
+.navbar-custom {
+    background-color: #6815EA;
+    color: white;
+}
+
+.navbar-custom .nav-link {
+    color: white;
+    font-size: 1em;
+}
+
+.navbar-custom .nav-link:hover {
+    color: yellow;
+}
+
+.logo {
+    margin-right: 60px;
+}
