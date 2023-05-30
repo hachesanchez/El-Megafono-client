@@ -1,7 +1,9 @@
-.custom-form .white-label {
+.login-label {
     color: white;
 }
 
-.custom-form .black-input {
-    color: black;
+.bg-custom {
+    background-color: rgb(32, 6, 92);
+    border: none;
+    padding: 20px;
 }

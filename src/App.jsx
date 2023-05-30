@@ -6,6 +6,7 @@ import AppRoutes from './routes/AppRoutes'
 import LoginPage from './pages/LoginPage/LoginPage';
 import { useLocation } from 'react-router-dom';
 
+
 function App() {
 
   const { pathname } = useLocation()
@@ -18,7 +19,9 @@ function App() {
 
       <div className="App">
         <Navigation />
-        <AppRoutes />
+        <div className="content-wrapper">
+          <AppRoutes />
+        </div>
         <Footer />
       </div>
   );

@@ -11,6 +11,7 @@ import JobCreatePage from "../pages/JobCreatePage/JobCreatePage"
 import UsersListPage from "../pages/UsersListPage/UsersListPage"
 import ExperienceCreatePage from "../pages/ExperienceCreatePage/ExperienceCreatePage"
 import JobDetailsPage from "../pages/JobDetailsPage/JobDetailsPage"
+import PrivateRoute from "./PrivateRoutes"
 
 const AppRoutes = () => {
 
@@ -18,19 +19,20 @@ const AppRoutes = () => {
 
         <Routes>
 
-            {/*  <Route path="/" element={<LoginPage />} /> */}
             <Route path="/registro" element={<SignUpPage />} />
 
-            <Route path="/inicio" element={<HomePage />} />
-            <Route path="/profesionales" element={<CandidatesListPage />} />
-            <Route path="/contacta" element={<ContactPage />} />
-            <Route path="/perfil" element={<ProfilePage />} />
-            <Route path="/perfil-editar" element={<ProfileEditPage />} />
-            <Route path="/empleos" element={<JobsListPage />} />
-            <Route path="/empleos/:id" element={<JobDetailsPage />} />
-            <Route path="/crear-oferta" element={<JobCreatePage />} />
-            <Route path="/crear-experiencia" element={<ExperienceCreatePage />} />
-            <Route path="/usuarios" element={<UsersListPage />} />
+            <Route element={<PrivateRoute />}>
+                <Route path="/inicio" element={<HomePage />} />
+                <Route path="/profesionales" element={<CandidatesListPage />} />
+                <Route path="/contacta" element={<ContactPage />} />
+                <Route path="/perfil" element={<ProfilePage />} />
+                <Route path="/edit/:id" element={<ProfileEditPage />} />
+                <Route path="/empleos" element={<JobsListPage />} />
+                <Route path="/empleos/:id" element={<JobDetailsPage />} />
+                <Route path="/crear-oferta" element={<JobCreatePage />} />
+                <Route path="/crear-experiencia" element={<ExperienceCreatePage />} />
+                <Route path="/usuarios" element={<UsersListPage />} />
+            </Route>
 
             <Route path="*" element={<h1>404</h1>} />
 

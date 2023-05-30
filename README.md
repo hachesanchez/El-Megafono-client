@@ -4,7 +4,7 @@
 | URL           |     Description    |    Protected   |  
 | ------------- |    -------------   |  ------------- |  
 | `/` | Login page |  |
-| `/signup` | Signup page |  |
+| `/registro` | Signup page |  |
 | `/inicio` | Index page | :white_check_mark: |
 | `/profesionales` | List of candidates page | :white_check_mark: |
 | `/profesionales/:id` | Details of a specific candidate page | :white_check_mark: |
