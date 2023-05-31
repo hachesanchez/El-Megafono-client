@@ -12,6 +12,10 @@ import UsersListPage from "../pages/UsersListPage/UsersListPage"
 import ExperienceCreatePage from "../pages/ExperienceCreatePage/ExperienceCreatePage"
 import JobDetailsPage from "../pages/JobDetailsPage/JobDetailsPage"
 import PrivateRoute from "./PrivateRoutes"
+import CandidateDetailsPage from "../pages/CandidateDetailsPage/CandidateDetailsPage"
+
+
+
 
 const AppRoutes = () => {
 
@@ -24,6 +28,7 @@ const AppRoutes = () => {
             <Route element={<PrivateRoute />}>
                 <Route path="/inicio" element={<HomePage />} />
                 <Route path="/profesionales" element={<CandidatesListPage />} />
+                <Route path="/profesionales/:id" element={<CandidateDetailsPage />} />
                 <Route path="/contacta" element={<ContactPage />} />
                 <Route path="/perfil" element={<ProfilePage />} />
                 <Route path="/edit/:id" element={<ProfileEditPage />} />

@@ -67,7 +67,7 @@ const SignupForm = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="location">
-                <Form.Label className="signup-label">Location</Form.Label>
+                <Form.Label className="signup-label">Ubicación</Form.Label>
                 <Form.Control type="text" value={location} onChange={handleInputChange} name="location" />
             </Form.Group>
 

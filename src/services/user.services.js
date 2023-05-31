@@ -20,9 +20,12 @@ class UserService {
         })
     };
 
+    getAllProfiles() {
+        return this.api.get(`/getAllUsers`);
+    }
 
     getProfile(userId) {
-        return this.api.get(`/edit/${userId}`);
+        return this.api.get(`/getOneUser/${userId}`);
     }
 
     editProfile(userId, userData) {
@@ -30,6 +33,7 @@ class UserService {
     }
 
 }
+
 
 const userService = new UserService()
 

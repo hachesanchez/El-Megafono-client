@@ -9,6 +9,12 @@ const ProfilePage = () => {
     return (
         <Container>
             <h1>Hola {user.username}</h1>
+            <img src={user.avatar}></img>
+            <p>{user.description}</p>
+            <p>{user.email}</p>
+            <p>{user.location}</p>
+            <p>{user.role}</p>
+
         </Container>
     )
 }

@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import userService from "./../../services/user.services"
+import userService from "../../services/user.services"
 import { useNavigate, useParams } from "react-router-dom";
-import "./EditProfessionalForm.css";
+import "./EditCandidateForm.css";
 import { useContext } from "react"
 
 
-const EditProfessionalForm = () => {
+const EditCandidateForm = () => {
 
     let { id: userId } = useParams()
-    console.log(userId)
 
     const [signupData, setSignupData] = useState({
+        username: '',
+        email: '',
+        description: '',
+        location: '',
         jobCategory: '',
         yearsOfExperience: '',
         availability: false,
@@ -28,27 +31,33 @@ const EditProfessionalForm = () => {
 
     });
 
-    const navigate = useNavigate;
 
-    //useEffect(() => { }, []);
-    /*  useEffect(() => {
-         getProfile(userId)
-     }, [userId]) */
+    const navigate = useNavigate();
 
 
+    useEffect(() => {
+        getProfile(userId);
+    }, [userId]);
+
+    const getProfile = () => {
+        userService
+            .getProfile(userId)
+            .then(({ data }) => {
+                setSignupData(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setSignupData({ ...signupData, [name]: value });
+
+        if (value) {
+            setSignupData({ ...signupData, [name]: value });
+        }
     };
 
-    /*    const getProfile = () => {
-           userService
-               .getProfile(userId)
-               .then(({ data }) => setSignupData(data))
-               .catch(error =>
-                   console.log(error));
-       } */
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -76,6 +85,9 @@ const EditProfessionalForm = () => {
 
     const {
         username,
+        description,
+        location,
+        email,
         jobCategory,
         yearsOfExperience,
         availability,
@@ -91,16 +103,33 @@ const EditProfessionalForm = () => {
 
     return (
 
-        <Form onSubmit={handleSubmit} className="edit-professional-form">
+        <Form onSubmit={handleSubmit} className="edit-Candidate-form">
 
-            <Form.Group className="mb-3 mt-3" controlId="username">
-                <Form.Label className="signup-label">Nombre de usuario</Form.Label>
-                <Form.Control type="text" value={signupData.username} onChange={handleInputChange} name="username" />
+            <Row>
+                <Form.Group as={Col} className="mb-3 mt-3" controlid="username">
+                    <Form.Label className="signup-label">Nombre de usuario</Form.Label>
+                    <Form.Control type="text" defaultValue={username} onChange={handleInputChange} name="username" />
+                </Form.Group>
+                <Form.Group as={Col} className="mb-3 mt-3" controlid="email">
+                    <Form.Label className="signup-label">Email</Form.Label>
+                    <Form.Control type="email" defaultValue={email} onChange={handleInputChange} name="email" />
+                </Form.Group>
+            </Row>
+
+            <Form.Group className="mb-3" controlid="description">
+                <Form.Label className="signup-label">Description</Form.Label>
+                <Form.Control type="text" defaultValue={description} onChange={handleInputChange} name="description" />
             </Form.Group>
+
+            <Form.Group className="mb-3" controlid="location">
+                <Form.Label className="signup-label">Ubicación</Form.Label>
+                <Form.Control type="text" defaultValue={location} onChange={handleInputChange} name="location" />
+            </Form.Group>
+
 
             <Form.Group className="mb-3">
                 <Form.Label className="mb-3">Categoría laboral</Form.Label>
-                <Form.Select controlId="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
+                <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
                     <option value="Administración y finanzas">Administración y finanzas</option>
                     <option value="Comunicación y Marketing">Comunicación y Marketing</option>
                     <option value="Cooperación">Cooperación</option>
@@ -117,7 +146,7 @@ const EditProfessionalForm = () => {
                 </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="yearsOfExperience">
+            <Form.Group className="mb-3" controlid="yearsOfExperience">
                 <Form.Label>Años de experiencia</Form.Label>
                 <Form.Control
                     type="number"
@@ -127,7 +156,7 @@ const EditProfessionalForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="availability">
+            <Form.Group className="mb-3" controlid="availability">
                 <Form.Check
                     type="checkbox"
                     label='Estoy disponible para empezar a trabajar'
@@ -138,7 +167,7 @@ const EditProfessionalForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="travelAvailability">
+            <Form.Group className="mb-3" controlid="travelAvailability">
                 <Form.Check
                     type='checkbox'
                     label='Estoy dispuesta a viajar por trabajo'
@@ -149,18 +178,18 @@ const EditProfessionalForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group controlId="languages">
+            <Form.Group controlid="languages">
                 {
-                    languages.map((elm, idx) => {
+                    languages.length ? languages.map((elm, idx) => {
                         return (
                             <Row key={idx}>
-                                <Form.Group as={Col} className="mb-3 mt-3" controlId="languages.name">
+                                <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
                                     <Form.Label >Idioma</Form.Label>
                                     <Form.Control type="languages.name" value={elm.name} onChange={(e) => handleLanguagesChange(e, idx)} name="name" />
                                 </Form.Group>
-                                <Form.Group as={Col} className="mb-3 mt-3" controlId="languages.value">
+                                <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
                                     <Form.Label >Nivel</Form.Label>
-                                    <Form.Select controlId="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
+                                    <Form.Select controlid="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
                                         <option value="Principiante">Principiante</option>
                                         <option value="Básico profesional">Básico profesional</option>
                                         <option value="Avanzado">Avanzado</option>
@@ -170,11 +199,29 @@ const EditProfessionalForm = () => {
                             </Row>
                         )
                     })
+                        :
+
+                        <Row>
+                            <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
+                                <Form.Label >Idioma</Form.Label>
+                                <Form.Control type="languages.name" onChange={(e) => handleLanguagesChange(e, 0)} name="name" />
+                            </Form.Group>
+                            <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
+                                <Form.Label >Nivel</Form.Label>
+                                <Form.Select controlid="languages.value" onChange={(e) => handleLanguagesChange(e, 0)} name="level" >
+                                    <option value="Principiante">Principiante</option>
+                                    <option value="Básico profesional">Básico profesional</option>
+                                    <option value="Avanzado">Avanzado</option>
+                                    <option value="Bilingüe o nativo">Bilingüe o nativo</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Row>
+
                 }
 
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="skills">
+            <Form.Group className="mb-3" controlid="skills">
                 <Form.Label>Habilidades</Form.Label>
                 <Form.Control
                     type="text"
@@ -184,7 +231,7 @@ const EditProfessionalForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="dailyRate">
+            <Form.Group className="mb-3" controlid="dailyRate">
                 <Form.Label>Tarifa diaria</Form.Label>
                 <Form.Control
                     type="number"
@@ -194,7 +241,7 @@ const EditProfessionalForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="grossSalary">
+            <Form.Group className="mb-3" controlid="grossSalary">
                 <Form.Label>Salario bruto deseado</Form.Label>
                 <Form.Control
                     type="number"
@@ -215,6 +262,6 @@ const EditProfessionalForm = () => {
 
 
 
-export default EditProfessionalForm
+export default EditCandidateForm
 
 
