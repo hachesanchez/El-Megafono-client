@@ -130,6 +130,7 @@ const EditCandidateForm = () => {
             <Form.Group className="mb-3">
                 <Form.Label className="mb-3">Categoría laboral</Form.Label>
                 <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
+                    <option value="">Escoge una opción...</option>
                     <option value="Administración y finanzas">Administración y finanzas</option>
                     <option value="Comunicación y Marketing">Comunicación y Marketing</option>
                     <option value="Cooperación">Cooperación</option>
@@ -190,6 +191,7 @@ const EditCandidateForm = () => {
                                 <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
                                     <Form.Label >Nivel</Form.Label>
                                     <Form.Select controlid="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
+                                        <option value="">Escoge una opción...</option>
                                         <option value="Principiante">Principiante</option>
                                         <option value="Básico profesional">Básico profesional</option>
                                         <option value="Avanzado">Avanzado</option>
@@ -209,6 +211,7 @@ const EditCandidateForm = () => {
                             <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
                                 <Form.Label >Nivel</Form.Label>
                                 <Form.Select controlid="languages.value" onChange={(e) => handleLanguagesChange(e, 0)} name="level" >
+                                    <option value="">Escoge una opción...</option>
                                     <option value="Principiante">Principiante</option>
                                     <option value="Básico profesional">Básico profesional</option>
                                     <option value="Avanzado">Avanzado</option>

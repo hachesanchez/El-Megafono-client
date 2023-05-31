@@ -1,13 +1,14 @@
+import ExperienceCreateForm from '../../components/ExperienceCreateForm/ExperienceCreateForm'
 import './ExperienceCreatePage.css'
 import { Container } from "react-bootstrap"
-
 const ExperienceCreatePage = () => {
 
     return (
         <Container>
-            <h1>Crear un nuevo proyecto</h1>
+            <ExperienceCreateForm></ExperienceCreateForm>
         </Container>
     )
 }
 
 export default ExperienceCreatePage
+

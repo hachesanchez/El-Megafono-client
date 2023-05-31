@@ -15,3 +15,9 @@
 .logo {
     margin-right: 60px;
 }
+
+.nav-avatar {
+    object-fit: cover;
+    height: 45px;
+    width: 45px;
+}

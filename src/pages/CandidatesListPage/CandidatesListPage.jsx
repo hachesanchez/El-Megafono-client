@@ -4,7 +4,7 @@ import userService from '../../services/user.services'
 import './CandidatesListPage.css'
 import { Col, Container, Row } from "react-bootstrap"
 import Loader from '../../components/Loader/Loader'
-//import { AuthContext } from "../../contexts/auth.context"
+import { AuthContext } from "../../contexts/auth.context"
 
 
 const CandidatesListPage = () => {
@@ -25,6 +25,7 @@ const CandidatesListPage = () => {
     }
 
     return (
+
         <Container>
 
             <h1>Todos los candidatos</h1>

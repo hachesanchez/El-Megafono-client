@@ -1,28 +1,31 @@
 import { Container } from 'react-bootstrap'
 import './CandidateDetailsPage.css'
 import CandidateCardDetails from '../../components/CandidateCardDetails/CandidateCardDetails'
+import userService from '../../services/user.services'
+import { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-/* const [users, setUsers] = useState()
-//const { user } = useContext(AuthContext)
 
-useEffect(() => {
-    loadUsers()
-}, [])
-
-const loadUsers = () => {
-    userService
-        .getProfile()
-        .then(({ data }) => setUsers(data))
-        .catch(err => console.log(err))
-} */
 
 const CandidateDetailsPage = () => {
+    const { id } = useParams()
+    const [users, setUsers] = useState()
+    //const { user } = useContext(AuthContext)
+
+    useEffect(() => {
+        loadUsers()
+    }, [])
+
+    const loadUsers = () => {
+        userService
+            .getProfile(id)
+            .then(({ data }) => setUsers(data))
+            .catch(err => console.log(err))
+    }
 
     return (
         <Container>
-            <h1>Detalles de una candidata</h1>
-            <CandidateCardDetails />
-
+            {users && <CandidateCardDetails users={users} />}
         </Container>
 
     )

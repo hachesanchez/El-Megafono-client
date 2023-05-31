@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './CandidateCard.css'
 
 const CandidateCard = ({ username, avatar, _id }) => {
-    console.log({ _id })
 
     return (
         <Card className='mb-3 CandidateCard'>

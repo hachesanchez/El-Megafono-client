@@ -74,6 +74,7 @@ const SignupForm = () => {
             <Form.Group>
                 <Form.Label className="signup-label">Soy</Form.Label>
                 <Form.Select controlId="role" value={role} onChange={handleInputChange} name="role" >
+                    <option value=" ">Escoge una opción...</option>
                     <option value="PROFESIONAL">Profesional</option>
                     <option value="ORGANIZACIÓN">Organizaión</option>
                 </Form.Select>
