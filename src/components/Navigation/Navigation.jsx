@@ -29,7 +29,7 @@ const Navigation = () => {
                                             <Link to="/inicio" className="nav-link">Inicio(A/O/P)</Link>
                                         </Nav.Link>
                                         <Nav.Link as="span">
-                                            <Link to="/profesionales" className="nav-link">Profesionales(A/O/P)</Link>
+                                            <Link to="/profesionales" className="nav-link">Profesionales(A/O)</Link>
                                         </Nav.Link>
                                         <Nav.Link as="span">
                                             <Link to="/contacta" className="nav-link">Contacta(A/O/P)</Link>

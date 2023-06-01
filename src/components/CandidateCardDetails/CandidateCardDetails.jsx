@@ -63,13 +63,7 @@ const CandidateCardDetails = ({ user }) => {
                         </ul>
                     </div>
                 </Col>
-                <Col>
-                    <p>Experiencias (array) +encapsularlas</p> {user.experience}
-                    <ExperiencesCard></ExperiencesCard>
-                </Col>
-
             </Row>
-
 
         </Container >
 
