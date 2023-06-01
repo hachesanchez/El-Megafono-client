@@ -88,7 +88,7 @@ const ProfilePage = () => {
                         <p> 1. COMPONENTE CARD DE OFERTAS GUARDADAS</p>
                     </Col>
                     <Col>
-                        <p> 2. COMPONENTECARD DE OFERTAS APLICADAS</p>
+                        <p> 2. COMPONENTE CARD DE OFERTAS APLICADAS</p>
                     </Col>
                 </Col>
                 <Col>
