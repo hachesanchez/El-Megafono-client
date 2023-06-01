@@ -1,19 +1,17 @@
+import './LoginCard.css';
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import logo from '../../assets/images/Logo-EM.png';
-import './LoginPage.css';
 
-const LoginPage = () => {
+import logo from '../../assets/images/Logo-EM.png';
+
+const LoginCard = () => {
 
     return (
-        <body className="login-page">
+        <body className="login-card">
             <Container>
                 <Row>
-                    <Col md={{ offset: 3, span: 6 }} className="text-center">
-                        <img src={logo} alt="Logo El megáfono" width="350" height="auto" className="logo mb-5" />
-                    </Col>
-                    <Col md={{ offset: 3, span: 6 }} className="text-left">
+                    <Col className="text-left">
                         <LoginForm />
                         <Link to="/registro" className="text-center">
                             <h1>o regístrate</h1>
@@ -25,4 +23,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default LoginCard;

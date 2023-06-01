@@ -1,52 +1,51 @@
 import { Card, Container, Image, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import './CandidateCardDetails.css'
 import ExperiencesCard from '../ExperiencesCard/ExperiencesCard'
 
 
-const CandidateCardDetails = ({ users }) => {
+const CandidateCardDetails = ({ user }) => {
 
     return (
 
         <Container>
 
-            <Row>
+            <Row className="d-flexjustify-content-center align-items-center">
                 <Col /* md={{ span: 3 }} */ >
-                    <Image className='avatar' src={users.avatar} alt="Avatar" roundedCircle />
+                    <Image className='avatar' src={user.avatar} alt="Avatar" roundedCircle />
                 </Col>
                 <Col /* md={{ span: 8, offset: 4 }} */>
-                    <h1>Bienvenidx al perfil de {users.username}</h1>
-                    <h4>{users.jobCategory}</h4>
-                    {users.description}
+                    <h1>Bienvenidx al perfil de {user.username}</h1>
+                    <h4>{user.jobCategory}</h4>
+                    {user.description}
                 </Col>
             </Row>
 
             <Row className='mt-5'>
                 <Col>
                     <div>
-                        {users.availability ? (
+                        {user.availability ? (
                             <p>Disponible</p>
                         ) : (
                             <p>No disponible</p>
                         )}
                     </div>
                     <div>
-                        {users.location}
-                        {users.availability ? (
+                        {user.location}
+                        {user.availability ? (
                             <p>(me puedo desplazar)</p>
                         ) : (
                             <p>(no me desplazo)</p>
                         )}
                     </div>
-                    <p>Tarifa diaria: {users.dailyRate}€</p>
-                    <p>Años de experiencia: {users.yearsOfExperience}</p>
+                    <p>Tarifa diaria: {user.dailyRate}€</p>
+                    <p>Años de experiencia: {user.yearsOfExperience}</p>
                 </Col>
 
                 <Col>
                     <div>
                         <p>Skills:</p>
                         <ul>
-                            {users.skills.map((skill, index) => (
+                            {user.skills.map((skill, index) => (
                                 skill.split(',').map((subSkill, subIndex) => (
                                     <li key={`${index}-${subIndex}`}> {subSkill.trim()}</li>
                                 ))
@@ -57,7 +56,7 @@ const CandidateCardDetails = ({ users }) => {
                     <div>
                         <p>Idiomas:</p>
                         <ul>
-                            {users.languages.map((language, index) => (
+                            {user.languages.map((language, index) => (
                                 <li key={index}>
                                     {language.name} - Nivel: {language.level}
                                 </li>))}
@@ -65,7 +64,7 @@ const CandidateCardDetails = ({ users }) => {
                     </div>
                 </Col>
                 <Col>
-                    <p>Experiencias (array) +encapsularlas</p> {users.experience}
+                    <p>Experiencias (array) +encapsularlas</p> {user.experience}
                     <ExperiencesCard></ExperiencesCard>
                 </Col>
 

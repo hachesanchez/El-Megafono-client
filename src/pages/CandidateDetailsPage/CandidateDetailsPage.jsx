@@ -9,23 +9,22 @@ import { useParams } from 'react-router-dom'
 
 const CandidateDetailsPage = () => {
     const { id } = useParams()
-    const [users, setUsers] = useState()
-    //const { user } = useContext(AuthContext)
+    const [user, setUser] = useState()
 
     useEffect(() => {
-        loadUsers()
+        loadUser()
     }, [])
 
-    const loadUsers = () => {
+    const loadUser = () => {
         userService
             .getProfile(id)
-            .then(({ data }) => setUsers(data))
+            .then(({ data }) => setUser(data))
             .catch(err => console.log(err))
     }
 
     return (
         <Container>
-            {users && <CandidateCardDetails users={users} />}
+            {user && <CandidateCardDetails user={user} />}
         </Container>
 
     )

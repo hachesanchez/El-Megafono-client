@@ -1,0 +1,15 @@
+.wellcome-card {
+    background-color: #6815EA;
+    display: flex;
+    align-items: center;
+}
+
+.wellcome-card h1 {
+    color: aquamarine;
+}
+
+.logo {
+    display: block;
+    max-width: 350px;
+    margin: 0 auto;
+}

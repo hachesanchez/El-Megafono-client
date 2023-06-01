@@ -5,7 +5,7 @@ const HomePage = () => {
 
     return (
         <Container>
-            <h1>Inicio</h1>
+            <h1>Inicio para usuarias logueadas</h1>
         </Container>
     )
 }

@@ -1,0 +1,20 @@
+.login-card {
+    background-color: #6815EA;
+    display: flex;
+    align-items: center;
+}
+
+.login-card h1 {
+    color: white;
+    margin-top: 10px;
+}
+
+.login-card h1:hoover {
+    color: rgb(83, 141, 159);
+    margin-top: 10px;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+}

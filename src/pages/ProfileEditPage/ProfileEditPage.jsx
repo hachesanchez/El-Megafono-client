@@ -10,7 +10,7 @@ const ProfileEditPage = () => {
             <h1>Editar perfil</h1>
             <hr className='mb-4' />
             <EditCandidateForm />
-            <EditOrganizationForm />
+            {/*   <EditOrganizationForm /> */}
         </Container>
     )
 }

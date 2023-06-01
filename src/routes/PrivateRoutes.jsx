@@ -12,7 +12,7 @@ const PrivateRoute = () => {
     }
 
     if (!user) {
-        return <Navigate to="/" />
+        return <Navigate to="/acceder" />
     }
 
     return <Outlet />

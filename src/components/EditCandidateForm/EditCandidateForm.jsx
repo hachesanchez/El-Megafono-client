@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import userService from "../../services/user.services"
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditCandidateForm.css";
-import { useContext } from "react"
+import { AuthContext } from "../../contexts/auth.context";
 
+// TODO OPCIONAL: GRANULARIZAR COMPONENTE
 
 const EditCandidateForm = () => {
 
@@ -33,10 +34,11 @@ const EditCandidateForm = () => {
 
 
     const navigate = useNavigate();
+    const { storeToken, authenticateUser } = useContext(AuthContext)
 
 
     useEffect(() => {
-        getProfile(userId);
+        getProfile();
     }, [userId]);
 
     const getProfile = () => {
@@ -53,9 +55,8 @@ const EditCandidateForm = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        if (value) {
-            setSignupData({ ...signupData, [name]: value });
-        }
+        value && setSignupData({ ...signupData, [name]: value });
+
     };
 
 
@@ -66,7 +67,7 @@ const EditCandidateForm = () => {
             .editProfile(userId, signupData)
             .then((response) => {
                 navigate("/perfil");
-                console.log(response)
+
             })
             .catch((error) => {
                 console.log(error);
@@ -130,6 +131,7 @@ const EditCandidateForm = () => {
             <Form.Group className="mb-3">
                 <Form.Label className="mb-3">Categoría laboral</Form.Label>
                 <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
+                    {/* TODO OPCIONAL: CREAR COLECCIÓN DE CATEGORIAS */}
                     <option value="">Escoge una opción...</option>
                     <option value="Administración y finanzas">Administración y finanzas</option>
                     <option value="Comunicación y Marketing">Comunicación y Marketing</option>

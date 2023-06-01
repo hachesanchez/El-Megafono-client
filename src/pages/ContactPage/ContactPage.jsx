@@ -3,9 +3,11 @@ import { Container } from "react-bootstrap"
 const ContactPage = () => {
 
     return (
-        <Container>
-            <h1>Contacta</h1>
-        </Container>
+        <body className='contact-page'>
+            <Container>
+                <h1>Contacta</h1>
+            </Container>
+        </body>
     )
 }
 
