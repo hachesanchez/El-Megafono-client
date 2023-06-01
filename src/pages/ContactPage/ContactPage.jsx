@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap"
+import './ContactPage.css'
 
 const ContactPage = () => {
 

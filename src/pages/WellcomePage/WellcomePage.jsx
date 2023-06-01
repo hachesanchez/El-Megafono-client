@@ -9,15 +9,15 @@ const WellcomePage = () => {
         <body className='wellcome-page'>
             <Container >
                 <Row>
-                    <Col xs={5} >
+                    <Col xs={7} >
                         <WellcomeCard />
                     </Col>
-                    <Col xs={7}>
+                    <Col xs={4}>
                         <LoginCard></LoginCard>
                     </Col>
                 </Row>
             </Container>
-        </body>
+        </body >
     )
 }
 

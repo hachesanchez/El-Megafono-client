@@ -4,11 +4,12 @@ import ExperiencesCard from "../../components/ExperiencesCard/ExperiencesCard"
 
 const ExperienceList = ({ experiences }) => {
 
+
     return (
         < div >
             {experiences && experiences.length > 0 ? (
                 experiences.map((experiences) => (
-                    <Col md={{ span: 4 }} key={experiences._id}>
+                    <Col key={experiences._id}>
                         <ExperiencesCard {...experiences} />
                     </Col>
                 ))

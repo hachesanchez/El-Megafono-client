@@ -6,9 +6,6 @@ import { Container, Button, Row, Col } from "react-bootstrap"
 import userService from "../../services/user.services"
 import ProfileCardDetails from "../../components/ProfileCardDetails/ProfileCardDetails"
 import experiencesService from "../../services/experiences.services"
-import CandidateCardDetails from "../../components/CandidateCardDetails/CandidateCardDetails"
-import Badge from 'react-bootstrap/Badge';
-import ExperiencesCard from "../../components/ExperiencesCard/ExperiencesCard"
 import ExperienceList from "../ExperienceListPage/ExperienceListPage"
 
 
@@ -23,7 +20,11 @@ const ProfilePage = () => {
 
 
     useEffect(() => {
-        // TODO: DESACOPLAR DEL EFECTO DE CARAGA LAS LLAMADAS A LA API
+        loadUser()
+    }, [user._id])
+
+
+    const loadUser = () => {
         userService
             .getProfile(user._id)
             .then(({ data }) => {
@@ -36,20 +37,17 @@ const ProfilePage = () => {
         experiencesService
             .getAllExperiences()
             .then(({ data }) => {
-                setExperiences(data);
+                const ownerExperience = data.filter(data => data.owner?._id == user._id)
+                setExperiences(ownerExperience);
             })
             .catch((error) => {
                 console.log(error);
             });
-
-    }, [])
-
+    }
 
 
     const handleDeleteUser = () => {
-
         const userId = user._id
-
         userService
             .deleteProfile(userId)
             .then((response) => {

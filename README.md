@@ -3,9 +3,10 @@
 
 | URL           |     Description    |    Protected   |  
 | ------------- |    -------------   |  ------------- |  
-| `/` | Login page |  |
+| `/bienvenida` | Wellcome page |  |
+| `/acceder` | Login page |  |
 | `/registro` | Signup page |  |
-| `/inicio` | Index page | :white_check_mark: |
+| `/inicio` | Index page for logged users | :white_check_mark: |
 | `/profesionales` | List of candidates page | :white_check_mark: |
 | `/profesionales/:id` | Details of a specific candidate page | :white_check_mark: |
 | `/contacta` | Contact and about page | :white_check_mark: |
@@ -17,6 +18,7 @@
 | `/empleos/crear` |Create a job offer page | :white_check_mark: |
 | `/aplicar` | Apply to a job offer page | :white_check_mark: |
 |`/experiencia/crear` |Create a cv experience page | :white_check_mark: |
+|`/experiencia/:id/editar` |Edit a specific cv experience page | :white_check_mark: |
 | `/usuarios` | List of users page | :white_check_mark: |
 | `/usuarios/:id/editar` | Edit a specific user page | :white_check_mark: |
 | `/usuarios/:id/profesionales-guardados` | List of saved candidates page | :white_check_mark: |
