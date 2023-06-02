@@ -10,20 +10,19 @@ const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) 
 
         <Container>
 
-            <Card className='m-1 JobCard'>
+            <Card className='p-3 m-1 JobCard'>
                 <Row>
                     <Col xs={8}>
 
                         <Link to={`/empleos/${_id}`}>
-                            <Card.Title className='m-3'>{title}</Card.Title>
+                            <Card.Title className='m-3'><h3>{title}</h3></Card.Title>
                         </Link>
 
                         <Card.Body>
                             <Card.Text className=''>
                                 <p> Publicado por:  {owner && owner.username}</p>
-                                <p>{description}</p>
+                                {description}
                                 <p>Salario bruto anual : {grossSalary}</p>
-                                <p>Tipo de contrato: {contract}</p>
                             </Card.Text>
 
                         </Card.Body>
