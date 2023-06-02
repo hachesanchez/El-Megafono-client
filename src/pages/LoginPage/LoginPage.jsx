@@ -7,7 +7,7 @@ import './LoginPage.css';
 const LoginPage = () => {
 
     return (
-        <body className="login-page">
+        <div className="login-page">
             <Container>
                 <Row>
                     <Col md={{ offset: 3, span: 6 }} className="text-center">
@@ -21,7 +21,7 @@ const LoginPage = () => {
                     </Col>
                 </Row>
             </Container>
-        </body>
+        </div>
     );
 };
 

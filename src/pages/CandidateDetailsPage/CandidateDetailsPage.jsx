@@ -24,6 +24,7 @@ const CandidateDetailsPage = () => {
 
 
     const loadUser = () => {
+
         userService
             .getProfile(id)
             .then(({ data }) => {

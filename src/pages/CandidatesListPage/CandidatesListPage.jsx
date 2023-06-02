@@ -18,6 +18,7 @@ const CandidatesListPage = () => {
     }, [])
 
     const loadUsers = () => {
+
         userService
             .getAllProfiles()
             .then(({ data }) => setUsers(data))

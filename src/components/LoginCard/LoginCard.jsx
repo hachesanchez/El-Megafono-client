@@ -8,7 +8,7 @@ import logo from '../../assets/images/Logo-EM.png';
 const LoginCard = () => {
 
     return (
-        <body className="login-card">
+        <div className="login-card">
             <Container>
                 <Row>
                     <Col className="text-left">
@@ -19,7 +19,7 @@ const LoginCard = () => {
                     </Col>
                 </Row>
             </Container>
-        </body>
+        </div>
     );
 };
 

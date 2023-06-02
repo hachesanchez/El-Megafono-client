@@ -21,4 +21,3 @@ const ExperienceList = ({ experiences }) => {
 };
 
 export default ExperienceList
-

@@ -17,11 +17,14 @@ const ProfilePage = () => {
 
     const [profileUser, setProfileUser] = useState(null)
     const [experiences, setExperiences] = useState()
+    const [deletedExperienceId, setDeletedExperienceId] = useState(null);
+
+
 
 
     useEffect(() => {
         loadUser()
-    }, [user._id])
+    }, [user._id, deletedExperienceId])
 
 
     const loadUser = () => {
@@ -37,7 +40,7 @@ const ProfilePage = () => {
         experiencesService
             .getAllExperiences()
             .then(({ data }) => {
-                const ownerExperience = data.filter(data => data.owner?._id == user._id)
+                const ownerExperience = data.filter((data) => data.owner?._id === user._id && data._id !== deletedExperienceId);
                 setExperiences(ownerExperience);
             })
             .catch((error) => {
@@ -108,5 +111,4 @@ const ProfilePage = () => {
 
 
 export default ProfilePage
-
 

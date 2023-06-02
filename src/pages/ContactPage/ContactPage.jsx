@@ -4,11 +4,11 @@ import './ContactPage.css'
 const ContactPage = () => {
 
     return (
-        <body className='contact-page'>
+        <div className='contact-page'>
             <Container>
                 <h1>Contacta</h1>
             </Container>
-        </body>
+        </div>
     )
 }
 

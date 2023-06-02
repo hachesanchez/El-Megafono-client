@@ -6,7 +6,7 @@ import logo from '../../assets/images/Logo-EM.png';
 const WellcomeCard = () => {
 
     return (
-        <body className="wellcome-card">
+        <div className="wellcome-card">
             <Container>
                 <Row >
                     <img src={logo} alt="Logo El megáfono" width="150" height="auto" className="logo mb-5" />
@@ -21,7 +21,7 @@ const WellcomeCard = () => {
                     </Link>
                 </Row>
             </Container>
-        </body >
+        </div >
     );
 };
 

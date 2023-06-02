@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap"
 const WellcomePage = () => {
 
     return (
-        <body className='wellcome-page'>
+        <main className='wellcome-page'>
             <Container >
                 <Row>
                     <Col xs={7} >
@@ -17,7 +17,7 @@ const WellcomePage = () => {
                     </Col>
                 </Row>
             </Container>
-        </body >
+        </main >
     )
 }
 

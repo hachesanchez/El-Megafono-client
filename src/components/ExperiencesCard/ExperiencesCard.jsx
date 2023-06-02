@@ -14,13 +14,15 @@ const ExperiencesCard = ({ _id, startDate, endDate, ...otherProps }) => {
     const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES");
     const { user } = useContext(AuthContext)
     const navigate = useNavigate();
-    const handleDeleteExperience = () => {
+    const [deletedExperienceId, setDeletedExperienceId] = useState(null)
 
-        const experienceId = _id
+    const handleDeleteExperience = () => {
+        const experienceId = _id;
 
         experiencesService
             .deleteExperience(experienceId)
             .then((response) => {
+                setDeletedExperienceId(experienceId);
                 navigate("/perfil");
             })
             .catch((error) => {
