@@ -75,12 +75,6 @@ const SignupForm = () => {
                 <Form.Control type="text" value={username} onChange={handleInputChange} name="username" />
             </Form.Group>
 
-
-            {/* <Form.Group className="mb-3" controlId="avatar">
-                <Form.Label className="signup-label">Avatar</Form.Label>
-                <Form.Control type="text" value={avatar} onChange={handleInputChange} name="avatar" />
-            </Form.Group> */}
-
             <Form.Group className="mb-3" controlId="avatar">
                 <Form.Label>Avatar</Form.Label>
                 <Form.Control type="file" onChange={handleFileUpload} />

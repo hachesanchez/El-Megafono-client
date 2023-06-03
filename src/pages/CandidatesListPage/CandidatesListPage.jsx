@@ -39,13 +39,7 @@ const CandidatesListPage = () => {
 
                 <Col >
                     <Row>
-                        {
-                            !users
-                                ?
-                                <Loader />
-                                :
-                                <CandidatesList users={users} />
-                        }
+                        {!users ? <Loader /> : <CandidatesList users={users} />}
                     </Row>
                 </Col>
             </Row>

@@ -1,8 +1,9 @@
 .job-avatar-details {
     padding: 20px;
     object-fit: cover;
-    height: 170px;
-    width: 170px;
+    height: 190px;
+    width: 190px;
+    margin-bottom: 30px;
 }
 
 .prop-name {

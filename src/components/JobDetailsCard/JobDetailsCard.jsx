@@ -1,21 +1,22 @@
-import { Card, Button, Container, Col, Row } from 'react-bootstrap'
+import { Card, Container, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './JobDetailsCard.css';
+import SaveJob from '../SavedJob/SavedJob';
+
 
 
 const JobDetailsCard = ({ title, description, grossSalary, contract, owner, yearsOfExperience, remoteJob, startDate, location, languages, _id }) => {
-    console.log('EL OWNER ENTERO ES-----', owner)
+
     return (
 
         <Container>
             <Card className='p-3 m-1 JobCard'>
                 <Row>
                     <Col xs={8}>
-
-                        <Link to={`/empleos/${_id}`}>
-                            <Card.Title className='m-4'><h1>{title}</h1></Card.Title>
-                        </Link>
-
+                        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                            <Card.Title className='m-2'><h1>{title}</h1></Card.Title>
+                            <SaveJob />
+                        </div>
                         <Card.Body>
                             <Card.Text className=' '>
                                 <p> <strong >{owner && owner.username}</strong>  </p>
@@ -34,22 +35,19 @@ const JobDetailsCard = ({ title, description, grossSalary, contract, owner, year
                                 </ul>
                             </Card.Text>
                         </Card.Body>
-
                     </Col>
-                    <Col xs={4} className="text-center">
+
+                    <Col xs={4} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                         <Row>
-                            <Card.Img variant="default" className='job-avatar rounded-circle mt-5' src={owner && owner.avatar} alt="Avatar" />
+                            <Card.Img variant="default" className='job-avatar-details rounded-circle mt-5' src={owner && owner.avatar} alt="Avatar" />
                         </Row>
                         <Row className='d-flex justify-content-between'>
-                            <Link to={`/empleos/${_id}`}>
-                                <Button variant="outline-success" size="sm">
-                                    Aplicar
-                                </Button>
+                            <Link to="#" className="btn btn-success" /* onClick={handleDeleteExperience} */>
+                                Aplicar
                             </Link>
-                            <Button variant="outline-success" size="sm">APLICAR</Button>
-                            <Button variant="danger" size="sm">LIKE</Button>
                         </Row>
                     </Col>
+
                 </Row>
             </Card>
         </Container >

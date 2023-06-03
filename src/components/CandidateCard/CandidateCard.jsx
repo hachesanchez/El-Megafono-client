@@ -1,20 +1,31 @@
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './CandidateCard.css'
+import FavouriteCandidate from '../FavouriteCandidate/FavouriteCandidate'
 
-const CandidateCard = ({ username, avatar, _id }) => {
-
+const CandidateCard = ({ username, avatar, location, availability, jobCategory, _id }) => {
+    console.log({ availability })
     return (
+
         <Card className='mb-3 CandidateCard'>
             <Card.Img variant='top' src={avatar} />
             <Card.Body>
-                <Card.Title> {username}</Card.Title>
-                <div className='d-grid'>
-                    <Link to={`/profesionales/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
-                </div>
+                <Link to={`/profesionales/${_id}`} className="card-link">
+                    <Card.Title><strong>{username}</strong></Card.Title>
+                </Link>
+                <Card.Text>
+                    <h6 className='location'>{location}</h6>
+                    {jobCategory}
+                </Card.Text>
+                <Card.Text> {availability ? <p>Disponible</p> : <p>No disponible</p>}</Card.Text>
             </Card.Body>
-        </Card>
+        </Card >
     )
 }
 
 export default CandidateCard
+
+
+{/*    <div style={{ display: 'block' }}>
+    <Link to={`/profesionales/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
+</div> */}

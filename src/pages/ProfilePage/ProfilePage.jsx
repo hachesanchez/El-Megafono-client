@@ -75,7 +75,7 @@ const ProfilePage = () => {
                         <Link className="w-100" to={`/profesionales/${user?._id}`}>
                             <Button variant="outline-secondary" className="w-100" size="sm" >Ver mi perfil público</Button>
                         </Link>
-                        <Link className="" to={`/edit/${user?._id}`}>
+                        <Link className="" to={`/editar/${user?._id}`}>
                             <Button variant="outline-secondary" className="w-100" size="sm" >Completar mi perfil</Button>
                         </Link>
                         <Button className="w-100" variant="danger" size="sm" onClick={handleDeleteUser}>

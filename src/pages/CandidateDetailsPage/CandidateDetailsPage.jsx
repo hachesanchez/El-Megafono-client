@@ -3,7 +3,6 @@ import './CandidateDetailsPage.css'
 import CandidateCardDetails from '../../components/CandidateCardDetails/CandidateCardDetails'
 import userService from '../../services/user.services'
 import experiencesService from '../../services/experiences.services'
-
 import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ExperienceList from '../ExperienceListPage/ExperienceListPage'
@@ -24,7 +23,6 @@ const CandidateDetailsPage = () => {
 
 
     const loadUser = () => {
-
         userService
             .getProfile(id)
             .then(({ data }) => {

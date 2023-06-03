@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
-import logo from '../../assets/images/Logo-EM.png';
 
 const LoginCard = () => {
 

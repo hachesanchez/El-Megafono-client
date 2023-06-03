@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import JobListCard from '../../components/JobListCard/JobListCard'
 import './JobsListPage.css'
-import { Container, Row } from "react-bootstrap"
-import { AuthContext } from '../../contexts/auth.context'
+import { Container } from "react-bootstrap"
+// import { AuthContext } from '../../contexts/auth.context'
 import jobService from '../../services/job.services'
 import Loader from '../../components/Loader/Loader'
 
@@ -11,7 +11,7 @@ import Loader from '../../components/Loader/Loader'
 const JobsListPage = () => {
 
 
-    const { user, logout } = useContext(AuthContext)
+    /*  const { user, logout } = useContext(AuthContext) */
     const [jobs, setJobs] = useState()
 
 

@@ -1,22 +1,67 @@
-import { Card, Container, Image, Row, Col } from 'react-bootstrap'
+import { Card, Container, Button, Image, Row, Col } from 'react-bootstrap'
+import { Link } from "react-router-dom"
+import userService from "../../services/user.services"
+import { useContext, useEffect, useState } from "react"
+import { useParams } from 'react-router-dom'
+
+import { AuthContext } from './../../contexts/auth.context'
 import './CandidateCardDetails.css'
-import ExperiencesCard from '../ExperiencesCard/ExperiencesCard'
+
 
 
 const CandidateCardDetails = ({ user }) => {
+
+    const { id } = useParams()
+    const { logout } = useContext(AuthContext)
+
+    const handleDeleteUser = () => {
+        const userId = user._id
+        userService
+            .deleteProfile(userId)
+            .then((response) => {
+                logout()
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    console.log('params------', id)
+    console.log('Y EL USER ID----', { id })
 
     return (
 
         <Container>
 
             <Row className="d-flexjustify-content-center align-items-center">
-                <Col /* md={{ span: 3 }} */ >
+                <Col  >
                     <Image className='avatar' src={user.avatar} alt="Avatar" roundedCircle />
                 </Col>
-                <Col /* md={{ span: 8, offset: 4 }} */>
+                <Col  >
                     <h1>Bienvenidx al perfil de {user.username}</h1>
                     <h4>{user.jobCategory}</h4>
                     {user.description}
+
+                    {user && id === user?._id && (
+                        <div className="mt-4 align-items-center display-inline">
+                            <Link className="" to={`/editar/${user._id}`}>
+                                <Button variant="outline-dark" className="" size="sm">
+                                    Completar mi perfil
+                                </Button>
+                            </Link>
+                            <Button
+                                className=""
+                                variant="outline-danger"
+                                size="sm"
+                                onClick={handleDeleteUser}
+                            >
+                                Borrar mi perfil
+                            </Button>
+                        </div>
+                    )}
+
+
+
                 </Col>
             </Row>
 

@@ -17,7 +17,7 @@ const EditCandidateForm = () => {
         description: '',
         location: '',
         jobCategory: '',
-        yearsOfExperience: '',
+        yearsOfExperience: 0,
         availability: false,
         travelAvailability: false,
         languages: [
@@ -27,8 +27,8 @@ const EditCandidateForm = () => {
             }
         ],
         skills: [''],
-        dailyRate: '',
-        grossSalary: ''
+        dailyRate: 0,
+        grossSalary: 0
 
     });
 

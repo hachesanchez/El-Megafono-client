@@ -2,3 +2,7 @@
     height: 180px;
     object-fit: cover;
 }
+
+.location {
+    color: gray;
+}
