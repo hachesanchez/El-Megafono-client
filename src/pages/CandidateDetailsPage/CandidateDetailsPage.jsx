@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import './CandidateDetailsPage.css'
 import CandidateCardDetails from '../../components/CandidateCardDetails/CandidateCardDetails'
 import userService from '../../services/user.services'
@@ -6,6 +6,7 @@ import experiencesService from '../../services/experiences.services'
 import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ExperienceList from '../ExperienceListPage/ExperienceListPage'
+import CandidateCardDetailsExtra from '../../components/CandidateCardDetailsExtra/CandidateCardDetailsExtra'
 
 
 
@@ -46,9 +47,17 @@ const CandidateDetailsPage = () => {
     return (
 
         <Container>
-
-            {user && <CandidateCardDetails user={user} />}
-            <ExperienceList experiences={experiences} />
+            <Row>
+                {user && <CandidateCardDetails user={user} />}
+            </Row>
+            <Row>
+                <Col md={7}>
+                    {user && <CandidateCardDetailsExtra user={user} />}
+                </Col>
+                <Col md={5}>
+                    <ExperienceList experiences={experiences} />
+                </Col>
+            </Row>
 
         </Container>
 

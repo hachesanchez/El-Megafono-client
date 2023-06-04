@@ -35,7 +35,7 @@ const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) 
         <Container>
 
             <Card className='p-3 m-1 JobCard'>
-                <Row>
+                <Row >
                     <Col xs={8}>
                         <div style={{ display: 'inline-flex', alignItems: 'center' }}>
                             <Link to={`/empleo/${_id}`}>

@@ -1,6 +1,5 @@
 .wellcome-card {
     background-color: #6815EA;
-    display: flex;
     align-items: center;
 }
 
@@ -8,8 +7,12 @@
     color: aquamarine;
 }
 
-.logo {
+.saber-mas:hover {
+    color: #EBE215;
+}
+
+/* .logo {
     display: block;
     max-width: 350px;
     margin: 0 auto;
-}
+} */

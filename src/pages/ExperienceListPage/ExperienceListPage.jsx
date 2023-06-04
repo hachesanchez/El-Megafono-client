@@ -6,7 +6,8 @@ const ExperienceList = ({ experiences }) => {
 
 
     return (
-        < div >
+
+        < container >
             {experiences && experiences.length > 0 ? (
                 experiences.map((experiences) => (
                     <Col key={experiences._id}>
@@ -16,7 +17,7 @@ const ExperienceList = ({ experiences }) => {
             ) : (
                 <p>No hay experiencias disponibles.</p>
             )}
-        </div >
+        </container >
     );
 };
 

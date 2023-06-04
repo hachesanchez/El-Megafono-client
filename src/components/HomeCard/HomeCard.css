@@ -1,0 +1,37 @@
+.home-card {
+    /*   background-color: #EBE215; */
+    height: 100vh;
+    align-items: center;
+}
+
+.home-text {
+    font-size: 1.2em;
+}
+
+.weAre-section {
+    padding: 60px;
+    background-color: white;
+}
+
+.weAre-text {
+    font-size: 3.5em;
+    padding: 30px;
+    color: #41079E;
+    font-weight: 200
+}
+
+
+
+.what-text {
+    font-size: 1.4em;
+    padding: 200px;
+    color: #797979;
+}
+
+.c2 {
+    color: white;
+}
+
+.c3 {
+    color: white;
+}

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import unfavCandidatImg from '../../../src/assets/images/fav-icon1.png'
+import unfavCandidatImg from '../../../src/assets/images/fav-icon3.png'
 import favCandidateImg from '../../../src/assets/images/fav-icon2.png'
 
 

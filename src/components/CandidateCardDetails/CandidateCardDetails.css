@@ -1,5 +1,64 @@
-.avatar {
-    object-fit: cover;
-    height: 300px;
-    width: 300px;
+/* CandidateCardDetails.css */
+
+.candidate-card-details {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
 }
+
+.avatar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.job-category {
+    font-size: 24px;
+    color: gray;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.details {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.edit-link {
+    margin-right: 10px;
+}
+
+.delete-profile-button {
+    margin-left: 10px;
+}
+
+/* Resto del código del componente */

@@ -8,7 +8,7 @@ const CandidatesList = ({ users }) => {
 
         users.map(elm => {
             return (
-                <Col md={{ span: 4 }} key={elm._id}>
+                <Col lg={4} md={6} xs={12} key={elm._id}>
                     <CandidateCard {...elm} />
                 </Col>
             )

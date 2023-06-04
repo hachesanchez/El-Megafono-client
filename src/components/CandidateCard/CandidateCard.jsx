@@ -1,13 +1,25 @@
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useContext, useState } from "react";
 import './CandidateCard.css'
 import FavouriteCandidate from '../FavouriteCandidate/FavouriteCandidate'
 
-const CandidateCard = ({ username, avatar, location, availability, jobCategory, _id }) => {
-    console.log({ availability })
-    return (
 
-        <Card className='mb-3 CandidateCard'>
+const CandidateCard = ({ username, avatar, location, availability, jobCategory, _id }) => {
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => { setIsHovered(true); };
+    const handleMouseLeave = () => { setIsHovered(false); };
+
+    const shadowClass = isHovered ? 'shadow-md' : 'shadow-sm';
+
+    return (
+        <Card
+            className={`mb-3 CandidateCard ${shadowClass}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <Card.Img variant='top' src={avatar} />
             <Card.Body>
                 <Link to={`/profesionales/${_id}`} className="card-link">

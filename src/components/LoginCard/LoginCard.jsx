@@ -13,7 +13,7 @@ const LoginCard = () => {
                     <Col className="text-left">
                         <LoginForm />
                         <Link to="/registro" className="text-center">
-                            <h1>o regístrate</h1>
+                            <h1 className='link-register'>o regístrate</h1>
                         </Link>
                     </Col>
                 </Row>

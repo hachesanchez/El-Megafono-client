@@ -33,11 +33,11 @@ const CandidatesListPage = () => {
             <hr />
 
             <Row>
-                <Col md={{ span: 2 }}>
+                <Col lg={2} md={3} xs={12}>
                     <h1>Aquí irá un buscador con filtros</h1>
                 </Col>
 
-                <Col >
+                <Col lg={9} md={9} xs={12} >
                     <Row>
                         {!users ? <Loader /> : <CandidatesList users={users} />}
                     </Row>

@@ -11,8 +11,8 @@ const JobDetailsCard = ({ title, description, grossSalary, contract, owner, year
 
         <Container>
             <Card className='p-3 m-1 JobCard'>
-                <Row>
-                    <Col xs={8}>
+                <Row >
+                    <Col xs={12} sm={12} md={8}>
                         <div style={{ display: 'inline-flex', alignItems: 'center' }}>
                             <Card.Title className='m-2'><h1>{title}</h1></Card.Title>
                             <SaveJob />
@@ -37,7 +37,7 @@ const JobDetailsCard = ({ title, description, grossSalary, contract, owner, year
                         </Card.Body>
                     </Col>
 
-                    <Col xs={4} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <Col xs={12} sm={12} md={4} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                         <Row>
                             <Card.Img variant="default" className='job-avatar-details rounded-circle mt-5' src={owner && owner.avatar} alt="Avatar" />
                         </Row>

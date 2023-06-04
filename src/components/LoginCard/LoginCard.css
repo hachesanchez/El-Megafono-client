@@ -18,3 +18,7 @@
     display: block;
     margin: 0 auto;
 }
+
+.link-register:hover {
+    color: #EBE215;
+}

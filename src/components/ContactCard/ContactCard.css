@@ -1,0 +1,30 @@
+.hPic {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.h1-contact {
+    font-size: 50px;
+    text-align: left;
+}
+
+.contact-text {
+    color: white;
+}
+
+.contact-text {
+    font-size: 1.1em;
+}
+
+.h5-contact {
+    color: #9E9800
+}
+
+.volver {
+    color: aquamarine;
+}
+
+.volver:hover {
+    color: #EBE215;
+}
