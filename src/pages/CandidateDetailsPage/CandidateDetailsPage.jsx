@@ -51,10 +51,11 @@ const CandidateDetailsPage = () => {
                 {user && <CandidateCardDetails user={user} />}
             </Row>
             <Row>
-                <Col md={7}>
+                <Col md={6} className='offset-md-1'>
                     {user && <CandidateCardDetailsExtra user={user} />}
                 </Col>
-                <Col md={5}>
+                <Col md={4}>
+                    <h3 className='experiencia-title m-4'>Experiencia laboral:</h3>
                     <ExperienceList experiences={experiences} />
                 </Col>
             </Row>

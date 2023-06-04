@@ -42,8 +42,8 @@ const CandidateCardDetails = ({ user }) => {
                         <h1>Bienvenidx al perfil de {user.username}</h1>
                         <h4 className="job-category">{user.jobCategory}</h4>
                         <p className="description">{user.description}</p>
-                        <Row className="align-items-center text-center mt-4">
 
+                        <Row className="align-items-center text-center mt-4">
                             <Col>
                                 {user && id === user?._id && (
                                     <div className="profile-actions">
@@ -57,8 +57,7 @@ const CandidateCardDetails = ({ user }) => {
                                             variant="outline-danger"
                                             size="sm"
                                             onClick={handleDeleteUser}
-                                        >
-                                            Borrar mi perfil
+                                        > Borrar mi perfil
                                         </Button>
                                     </div>
                                 )}

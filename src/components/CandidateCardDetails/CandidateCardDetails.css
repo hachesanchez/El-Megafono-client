@@ -1,5 +1,3 @@
-/* CandidateCardDetails.css */
-
 .candidate-card-details {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -60,5 +58,3 @@
 .delete-profile-button {
     margin-left: 10px;
 }
-
-/* Resto del código del componente */

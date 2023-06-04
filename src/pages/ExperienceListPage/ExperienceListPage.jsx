@@ -9,9 +9,9 @@ const ExperienceList = ({ experiences }) => {
 
         < container >
             {experiences && experiences.length > 0 ? (
-                experiences.map((experiences) => (
+                experiences.map((experience) => (
                     <Col key={experiences._id}>
-                        <ExperiencesCard {...experiences} />
+                        <ExperiencesCard {...experience} />
                     </Col>
                 ))
             ) : (

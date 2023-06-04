@@ -1,3 +1,15 @@
 .cardHeader :link {
     text-decoration: none;
 }
+
+.organization {
+    font-weight: 400;
+}
+
+.date {
+    font-size: 0.8em;
+}
+
+.experience-card-custom {
+    background-color: rgb(255, 255, 255);
+}

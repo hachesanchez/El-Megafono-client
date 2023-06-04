@@ -42,7 +42,7 @@ const JobDetailsCard = ({ title, description, grossSalary, contract, owner, year
                             <Card.Img variant="default" className='job-avatar-details rounded-circle mt-5' src={owner && owner.avatar} alt="Avatar" />
                         </Row>
                         <Row className='d-flex justify-content-between'>
-                            <Link to="#" className="btn btn-success" /* onClick={handleDeleteExperience} */>
+                            <Link to="#" className="btn btn-success" /* onClick={handleApplyExperience} */>
                                 Aplicar
                             </Link>
                         </Row>

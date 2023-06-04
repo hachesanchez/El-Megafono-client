@@ -1,12 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import logo from '../../assets/images/Logo-EM.png';
-import './LoginPage.css';
+import './LoginPage.css'; import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth.context";
 
 const LoginPage = () => {
 
+    const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
+
+    if (isAuthenticated) {
+        navigate('/inicio');
+    }
     return (
+
         <div className="login-page">
             <Container>
                 <Row>

@@ -25,7 +25,7 @@ const AppRoutes = () => {
 
         <Routes>
 
-            <Route path="/registro" element={<SignUpPage />} />
+            {/*  <Route path="/registro" element={<SignUpPage />} /> */}
             <Route path="/acceder" element={<LoginPage />} />
             <Route path="/" element={<WellcomePage />} />
             <Route path="/contacta" element={<ContactPage />} />

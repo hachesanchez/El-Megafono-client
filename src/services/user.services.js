@@ -28,6 +28,10 @@ class UserService {
         return this.api.get(`/getOneUser/${userId}`);
     }
 
+    addSavedJob(userId, jobId) { //TODO: NO FUNCIONA
+        return this.api.post(`/savedJob/${userId}`, { jobId });
+    }
+
     editProfile(userId, userData) {
         return this.api.put(`/edit/${userId}`, userData);
     }
@@ -35,6 +39,7 @@ class UserService {
     deleteProfile(userId) {
         return this.api.delete(`/delete/${userId}`);
     }
+
 
 }
 

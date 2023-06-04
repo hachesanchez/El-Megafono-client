@@ -9,6 +9,7 @@ import './ExperiencesCard.css'
 
 const ExperiencesCard = ({ _id, startDate, endDate, ...otherProps }) => {
 
+
     const formattedStartDate = new Date(startDate).toLocaleDateString("es-ES");
     const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES");
     const { user } = useContext(AuthContext)
@@ -33,20 +34,20 @@ const ExperiencesCard = ({ _id, startDate, endDate, ...otherProps }) => {
     return (
 
         <Container>
-            <Card >
+            <Card className="experience-card-custom">
                 <Card.Body>
 
                     <div className="cardHeader">
                         <Card.Title>{otherProps.title}</Card.Title>
                     </div>
 
-                    <Card.Subtitle className="mb-2 text-muted">{otherProps.organization}</Card.Subtitle>
-                    <Card.Subtitle className="mb-2 text-muted">Desde {formattedStartDate} hasta {formattedEndDate}</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 organization">{otherProps.organization}</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted date">Desde {formattedStartDate} hasta {formattedEndDate}</Card.Subtitle>
                     <Card.Text>
                         {otherProps.description}
                     </Card.Text>
 
-                    {user._id === otherProps.owner._id &&
+                    {user && user._id === otherProps.owner._id &&
                         <>
                             <Link className='text-primary m-2' to={`/experiencia/${_id}/editar`}>
                                 Editar

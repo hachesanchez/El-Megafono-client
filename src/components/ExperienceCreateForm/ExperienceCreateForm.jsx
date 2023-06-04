@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Form, Button, Col, Row } from "react-bootstrap"
 import experiencesService from "../../services/experiences.services"
 
-const ExperienceCreateForm = () => {
+const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
 
     const [experienceData, setExperienceData] = useState({
         title: '',
@@ -25,7 +25,10 @@ const ExperienceCreateForm = () => {
 
         experiencesService
             .saveExperience(experienceData)
-            .then(({ data }) => navigate('/perfil'))
+            .then(({ data }) => {
+                closeModal()
+                updateExperiences()
+            })
             .catch(err => console.log(err))
     }
 
@@ -36,29 +39,29 @@ const ExperienceCreateForm = () => {
 
         <Form onSubmit={handleSubmit} className="experience-form">
 
-            <Form.Group className="mb-3 mt-3" controlId="title">
+            <Form.Group className="mb-3" controlId="title">
                 <Form.Label className="signup-label">Cargo</Form.Label>
                 <Form.Control type="text" value={title} onChange={handleInputChange} name="title" />
             </Form.Group>
 
-            <Form.Group className="mb-3 mt-3" controlId="organization">
+            <Form.Group className="mb-3" controlId="organization">
                 <Form.Label className="signup-label">Organización o empresa</Form.Label>
                 <Form.Control type="text" value={organization} onChange={handleInputChange} name="organization" />
             </Form.Group>
 
             <Row>
-                <Form.Group as={Col} className="mb-3 mt-3" controlId="startDate">
+                <Form.Group as={Col} className="mb-3" controlId="startDate">
                     <Form.Label className="signup-label">Fecha de inicio</Form.Label>
                     <Form.Control type="startDate" value={startDate} onChange={handleInputChange} name="startDate" />
                 </Form.Group>
 
-                <Form.Group as={Col} className="mb-3 mt-3" controlId="endDate">
+                <Form.Group as={Col} className="mb-3" controlId="endDate">
                     <Form.Label className="signup-label">Fecha de fin</Form.Label>
                     <Form.Control type="endDate" value={endDate} onChange={handleInputChange} name="endDate" />
                 </Form.Group>
             </Row>
 
-            <Form.Group className="mb-3 mt-3" controlId="description">
+            <Form.Group className="mb-3" controlId="description">
                 <Form.Label className="signup-label">Descripción del puesto</Form.Label>
                 <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
             </Form.Group>

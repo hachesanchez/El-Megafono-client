@@ -7,7 +7,7 @@ import './SignupForm.css'
 
 
 
-const SignupForm = () => {
+const SignupForm = ({ closeModal }) => {
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -31,7 +31,9 @@ const SignupForm = () => {
 
         authService
             .signup(signupData)
-            .then(({ data }) => navigate('/perfil'))
+            .then(({ data }) => {
+                closeModal()
+            })
             .catch(err => console.log(err))
     }
 

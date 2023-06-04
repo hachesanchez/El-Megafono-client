@@ -119,7 +119,7 @@ const JobCreateForm = () => {
             </Form.Group>
 
             <Form.Group className="mb-3 mt-3" controlId="location">
-                <Form.Label className="job-label">Ubicaión del puesto de trabajo</Form.Label>
+                <Form.Label className="job-label">Ubicación del puesto de trabajo</Form.Label>
                 <Form.Control type="text" value={location} onChange={handleInputChange} name="location" />
             </Form.Group>
 
