@@ -23,9 +23,9 @@ const LoginPage = () => {
                     </Col>
                     <Col md={{ offset: 3, span: 6 }} className="text-left">
                         <LoginForm />
-                        <Link to="/registro" className="text-center">
+                        {/* <Link to="/registro" className="text-center">
                             <h1>o regístrate</h1>
-                        </Link>
+                        </Link> */} {/* //TODO: SACAR LA MODAL */}
                     </Col>
                 </Row>
             </Container>

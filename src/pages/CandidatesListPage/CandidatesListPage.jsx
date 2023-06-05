@@ -11,19 +11,26 @@ const CandidatesListPage = () => {
 
 
     const [users, setUsers] = useState()
-    //const { user } = useContext(AuthContext)
+    const { user, role } = useContext(AuthContext)
 
     useEffect(() => {
         loadUsers()
     }, [])
 
+
     const loadUsers = () => {
 
         userService
-            .getAllProfiles()
-            .then(({ data }) => setUsers(data))
+
+            .getCandidateUsers()
+            .then(({ data }) => {
+
+                setUsers(data)
+                console.log(data)
+            })
             .catch(err => console.log(err))
     }
+
 
     return (
 

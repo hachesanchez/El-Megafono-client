@@ -28,6 +28,10 @@ class UserService {
         return this.api.get(`/getOneUser/${userId}`);
     }
 
+    getCandidateUsers() {
+        return this.api.get(`/getCandidateUsers`);
+    }
+
     addSavedJob(userId, jobId) { //TODO: NO FUNCIONA
         return this.api.post(`/savedJob/${userId}`, { jobId });
     }

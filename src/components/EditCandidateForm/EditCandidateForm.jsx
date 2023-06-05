@@ -7,7 +7,8 @@ import { AuthContext } from "../../contexts/auth.context";
 
 // TODO OPCIONAL: GRANULARIZAR COMPONENTE
 
-const EditCandidateForm = () => {
+
+const EditCandidateForm = ({ /* closeModal */ }) => {
 
     let { id: userId } = useParams()
 
@@ -17,6 +18,7 @@ const EditCandidateForm = () => {
         description: '',
         location: '',
         jobCategory: '',
+        role: '',
         yearsOfExperience: 0,
         availability: false,
         travelAvailability: false,
@@ -34,12 +36,13 @@ const EditCandidateForm = () => {
 
 
     const navigate = useNavigate();
-    const { storeToken, authenticateUser } = useContext(AuthContext)
+    const { storeToken, authenticateUser, role } = useContext(AuthContext)
 
 
     useEffect(() => {
         getProfile();
     }, [userId]);
+
 
     const getProfile = () => {
         userService
@@ -56,7 +59,6 @@ const EditCandidateForm = () => {
         const { name, value } = e.target;
 
         value && setSignupData({ ...signupData, [name]: value });
-
     };
 
 
@@ -66,6 +68,7 @@ const EditCandidateForm = () => {
         userService
             .editProfile(userId, signupData)
             .then((response) => {
+                /*  closeModal() */
                 navigate("/perfil");
 
             })
@@ -90,6 +93,7 @@ const EditCandidateForm = () => {
         location,
         email,
         jobCategory,
+        role: signupRole,
         yearsOfExperience,
         availability,
         travelAvailability,
@@ -98,7 +102,6 @@ const EditCandidateForm = () => {
         dailyRate,
         grossSalary
     } = signupData;
-
 
 
 
@@ -149,112 +152,116 @@ const EditCandidateForm = () => {
                 </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlid="yearsOfExperience">
-                <Form.Label>Años de experiencia</Form.Label>
-                <Form.Control
-                    type="number"
-                    value={yearsOfExperience}
-                    onChange={handleInputChange}
-                    name="yearsOfExperience"
-                />
-            </Form.Group>
+            {signupRole === "PROFESIONAL" || signupRole === "ADMIN" ? (
+                <>
+                    <Form.Group className="mb-3" controlid="yearsOfExperience">
+                        <Form.Label>Años de experiencia</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={yearsOfExperience}
+                            onChange={handleInputChange}
+                            name="yearsOfExperience"
+                        />
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlid="availability">
-                <Form.Check
-                    type="checkbox"
-                    label='Estoy disponible para empezar a trabajar'
-                    checked={availability}
-                    onChange={e =>
-                        setSignupData({ ...signupData, availability: e.target.checked })
-                    }
-                />
-            </Form.Group>
+                    <Form.Group className="mb-3" controlid="availability">
+                        <Form.Check
+                            type="checkbox"
+                            label='Estoy disponible para empezar a trabajar'
+                            checked={availability}
+                            onChange={e =>
+                                setSignupData({ ...signupData, availability: e.target.checked })
+                            }
+                        />
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlid="travelAvailability">
-                <Form.Check
-                    type='checkbox'
-                    label='Estoy dispuesta a viajar por trabajo'
-                    checked={travelAvailability}
-                    onChange={e =>
-                        setSignupData({ ...signupData, travelAvailability: e.target.checked })
-                    }
-                />
-            </Form.Group>
+                    <Form.Group className="mb-3" controlid="travelAvailability">
+                        <Form.Check
+                            type='checkbox'
+                            label='Estoy dispuesta a viajar por trabajo'
+                            checked={travelAvailability}
+                            onChange={e =>
+                                setSignupData({ ...signupData, travelAvailability: e.target.checked })
+                            }
+                        />
+                    </Form.Group>
 
-            <Form.Group controlid="languages">
-                {
-                    languages.length ? languages.map((elm, idx) => {
-                        return (
-                            <Row key={idx}>
-                                <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
-                                    <Form.Label >Idioma</Form.Label>
-                                    <Form.Control type="languages.name" value={elm.name} onChange={(e) => handleLanguagesChange(e, idx)} name="name" />
-                                </Form.Group>
-                                <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
-                                    <Form.Label >Nivel</Form.Label>
-                                    <Form.Select controlid="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
-                                        <option value="">Escoge una opción...</option>
-                                        <option value="Principiante">Principiante</option>
-                                        <option value="Básico profesional">Básico profesional</option>
-                                        <option value="Avanzado">Avanzado</option>
-                                        <option value="Bilingüe o nativo">Bilingüe o nativo</option>
-                                    </Form.Select>
-                                </Form.Group>
-                            </Row>
-                        )
-                    })
-                        :
+                    <Form.Group controlid="languages">
+                        {
+                            languages.length ? languages.map((elm, idx) => {
+                                return (
+                                    <Row key={idx}>
+                                        <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
+                                            <Form.Label >Idioma</Form.Label>
+                                            <Form.Control type="languages.name" value={elm.name} onChange={(e) => handleLanguagesChange(e, idx)} name="name" />
+                                        </Form.Group>
+                                        <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
+                                            <Form.Label >Nivel</Form.Label>
+                                            <Form.Select controlid="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
+                                                <option value="">Escoge una opción...</option>
+                                                <option value="Principiante">Principiante</option>
+                                                <option value="Básico profesional">Básico profesional</option>
+                                                <option value="Avanzado">Avanzado</option>
+                                                <option value="Bilingüe o nativo">Bilingüe o nativo</option>
+                                            </Form.Select>
+                                        </Form.Group>
+                                    </Row>
+                                )
+                            })
+                                :
 
-                        <Row>
-                            <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
-                                <Form.Label >Idioma</Form.Label>
-                                <Form.Control type="languages.name" onChange={(e) => handleLanguagesChange(e, 0)} name="name" />
-                            </Form.Group>
-                            <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
-                                <Form.Label >Nivel</Form.Label>
-                                <Form.Select controlid="languages.value" onChange={(e) => handleLanguagesChange(e, 0)} name="level" >
-                                    <option value="">Escoge una opción...</option>
-                                    <option value="Principiante">Principiante</option>
-                                    <option value="Básico profesional">Básico profesional</option>
-                                    <option value="Avanzado">Avanzado</option>
-                                    <option value="Bilingüe o nativo">Bilingüe o nativo</option>
-                                </Form.Select>
-                            </Form.Group>
-                        </Row>
+                                <Row>
+                                    <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
+                                        <Form.Label >Idioma</Form.Label>
+                                        <Form.Control type="languages.name" onChange={(e) => handleLanguagesChange(e, 0)} name="name" />
+                                    </Form.Group>
+                                    <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
+                                        <Form.Label >Nivel</Form.Label>
+                                        <Form.Select controlid="languages.value" onChange={(e) => handleLanguagesChange(e, 0)} name="level" >
+                                            <option value="">Escoge una opción...</option>
+                                            <option value="Principiante">Principiante</option>
+                                            <option value="Básico profesional">Básico profesional</option>
+                                            <option value="Avanzado">Avanzado</option>
+                                            <option value="Bilingüe o nativo">Bilingüe o nativo</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Row>
+                        }
 
-                }
+                    </Form.Group>
 
-            </Form.Group>
+                    <Form.Group className="mb-3" controlid="skills">
+                        <Form.Label>Habilidades</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={skills}
+                            onChange={handleInputChange}
+                            name="skills"
+                        />
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlid="skills">
-                <Form.Label>Habilidades</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={skills}
-                    onChange={handleInputChange}
-                    name="skills"
-                />
-            </Form.Group>
+                    <Form.Group className="mb-3" controlid="dailyRate">
+                        <Form.Label>Tarifa diaria</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={dailyRate}
+                            onChange={handleInputChange}
+                            name="dailyRate"
+                        />
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlid="dailyRate">
-                <Form.Label>Tarifa diaria</Form.Label>
-                <Form.Control
-                    type="number"
-                    value={dailyRate}
-                    onChange={handleInputChange}
-                    name="dailyRate"
-                />
-            </Form.Group>
+                    <Form.Group className="mb-3" controlid="grossSalary">
+                        <Form.Label>Salario bruto deseado</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={grossSalary}
+                            onChange={handleInputChange}
+                            name="grossSalary"
+                        />
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlid="grossSalary">
-                <Form.Label>Salario bruto deseado</Form.Label>
-                <Form.Control
-                    type="number"
-                    value={grossSalary}
-                    onChange={handleInputChange}
-                    name="grossSalary"
-                />
-            </Form.Group>
+                </>
+            ) : null}
 
             <div className="d-grid">
                 <Button variant="dark mt-4 mb-4" type="submit">

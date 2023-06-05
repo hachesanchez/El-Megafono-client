@@ -8,6 +8,7 @@ import ProfileCardDetails from "../../components/ProfileCardDetails/ProfileCardD
 import experiencesService from "../../services/experiences.services"
 import ExperienceList from "../ExperienceListPage/ExperienceListPage"
 import ExperienceCreateForm from "../../components/ExperienceCreateForm/ExperienceCreateForm"
+import EditCandidateForm from '../../components/EditCandidateForm/EditCandidateForm'
 
 
 
@@ -19,6 +20,7 @@ const ProfilePage = () => {
     const [experiences, setExperiences] = useState()
     const [deletedExperienceId, setDeletedExperienceId] = useState(null);
     const [showModal, setShowModal] = useState(false)
+    const [showModalProfile, setShowModalProfile] = useState(false)
 
 
 
@@ -96,8 +98,14 @@ const ProfilePage = () => {
                             <Button variant="outline-dark" className="w-100" size="sm" >Ver mi perfil público</Button>
                         </Link>
                         <Link className="" to={`/editar/${user?._id}`}>
-                            <Button variant="outline-dark" className="w-100" size="sm" >Completar mi perfil</Button>
+                            <Button variant="outline-dark" className="w-100" size="sm" >Completar mi pperfil</Button>
                         </Link>
+                        {/*    <Button variant="outline-dark" 
+                        className="w-100" 
+                        size="sm" 
+                        onClick={() => setShowModalProfile(true)} >Completar mi perfil
+                        </Button> */}
+
                         <Button className="w-100" variant="danger" size="sm" onClick={handleDeleteUser}>
                             Borrar mi perfil
                         </Button>
@@ -131,6 +139,17 @@ const ProfilePage = () => {
                 </Modal.Body>
             </Modal>
 
+            {/* TODO: ESTA MODAL NO FUNCIONA, NO CARGA LOS DATOS YA INTRODUCIDOS, NI DESPLIEGA OPCIONES DE PROFESIONAL */}
+            {/*   <Modal show={showModalProfile} onHide={() => setShowModalProfile(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Completar mi perfil</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <EditCandidateForm closeModal={() => setShowModalProfile(false)} />
+                </Modal.Body>
+            </Modal> */}
+
+
         </Container>
     )
 }
@@ -141,7 +160,3 @@ const ProfilePage = () => {
 
 export default ProfilePage
 
-
-{/*  <Link className="" to={`/crear-experiencia`}>
-    <Button variant="outline-secondary" className="w-90" size="sm" >Añade experiencia</Button>
-</Link> */}
