@@ -19,7 +19,7 @@ const ProfileCardDetails = ({ user }) => {
 
                         <h1>¡Hola {user.username}!</h1>
 
-                        <h4>{user.jobCategory}</h4>
+                        <h4 className='job-category-prof mb-4'>{user.jobCategory}</h4>
                         <p>{user.description}</p>
                     </Col>
                 </Row >

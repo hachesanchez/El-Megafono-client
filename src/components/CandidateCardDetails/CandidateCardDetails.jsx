@@ -49,7 +49,7 @@ const CandidateCardDetails = ({ user: profileUser }) => {
                         <Row className="align-items-center text-center mt-4">
                             <Col>
 
-                                {id === user?._id && (
+                                {id === user?._id || user.role === "ADMIN" && (
                                     <div className="profile-actions">
                                         <Link className="edit-link" to={`/editar/${profileUser._id}`}>
                                             <Button variant="outline-dark" size="sm">

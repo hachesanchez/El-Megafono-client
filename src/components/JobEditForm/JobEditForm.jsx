@@ -94,6 +94,7 @@ const JobEditForm = () => {
         startDate,
         contract,
         languages,
+        isFilled,
     } = jobData;
 
 
@@ -231,6 +232,15 @@ const JobEditForm = () => {
                         </Row>
                 }
             </Form.Group>
+
+            <Form.Group className="mb-3 mt-3" controlId="isFilled">
+                <Form.Label className="job-label">¿Se ha cerrado este proceso?</Form.Label>
+                <Form.Select value={isFilled} onChange={handleInputChange} name="isFilled">
+                    <option value={true}>Sí</option>
+                    <option value={false}>No</option>
+                </Form.Select>
+            </Form.Group>
+
             <div className="d-grid">
                 <Button variant="dark mt-4" type="submit">Guardar edición</Button>
             </div>

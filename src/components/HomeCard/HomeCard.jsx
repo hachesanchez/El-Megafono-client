@@ -7,10 +7,11 @@ import headerImg from '../../assets/images/Header-3.jpg'
 const HomeCard = () => {
 
     return (
+
         <div className="home-card" style={{ backgroundColor: '', paddingBottom: '50px' }}>
             <Image
                 src={headerImg}
-                style={{ width: '100%', maxHeight: '300px', objectFit: 'cover', marginBottom: '30px', }}
+                style={{ width: '100%', maxHeight: '800px', objectFit: 'cover', marginBottom: '30px', }}
             />
             <Container>
                 <Row className='align-items-center justify-content-center'>

@@ -14,3 +14,7 @@
     max-height: 40px;
     background-color: none;
 }
+
+.job-category-details {
+    color: gray;
+}

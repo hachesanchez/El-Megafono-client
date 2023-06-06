@@ -10,7 +10,7 @@ import saveJobImg from '../../../src/assets/images/save-icon2.png'
 import Loader from '../../components/Loader/Loader'
 import userService from '../../services/user.services';
 
-const JobDetailsCard = ({ title, description, grossSalary, contract, owner, yearsOfExperience, remoteJob, startDate, location, languages, _id, loadJob }) => {
+const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract, owner, yearsOfExperience, remoteJob, startDate, location, languages, isFilled, _id, loadJob }) => {
 
 
     const { user } = useContext(AuthContext)
@@ -62,10 +62,15 @@ const JobDetailsCard = ({ title, description, grossSalary, contract, owner, year
     return (
 
         <Container>
+
             <Card className='p-3 m-1 JobCard'>
+                <Row >
+                    <Card.Text className='mx-3 mb-2 job-category-details'>{jobCategory}</Card.Text>
+                </Row>
                 <Row >
                     <Col xs={12} sm={12} md={8}>
                         <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+
                             <Card.Title className='m-2'><h1>{title}</h1></Card.Title>
 
                             {!user ? <Loader /> : console.log(userSaved)}
@@ -85,23 +90,28 @@ const JobDetailsCard = ({ title, description, grossSalary, contract, owner, year
                                         <img className='saveicon' src={unsaveJobImg} />
                                     </Button>
                             }
+
                         </div>
                         <Card.Body>
                             <Card.Text className=' '>
                                 <p> <strong >{owner && owner.username}</strong>  </p>
                                 <p>{description}</p>
                                 <ul>
-                                    <li><strong className='prop-name'>Salario bruto anual:</strong> {grossSalary}</li>
+                                    <li><strong className='prop-name'>Salario bruto anual:</strong> {grossSalary}€</li>
                                     <li> <strong className='prop-name'>Tipo de contrato</strong> {contract}</li>
-                                    <li><strong className='prop-name'>Experiencia requerida</strong> {yearsOfExperience} años</li>
-                                    <li><strong className='prop-name'>Lugar del puesto de trabajo</strong> {location}</li>
-                                    <li><strong className='prop-name'>Posibilidad de teletrabajo:</strong>  {remoteJob ? (<p>Sí</p>) : (<p>No</p>)}   </li>
-                                    <li><strong className='prop-name'>Fecha de incorporación(mes y año)</strong> {startDate}</li>
-                                    <li><strong className='prop-name'>Idiomas solicitados: </strong>   {languages.map((language, index) => (
+                                    <li><strong className='prop-name'>Experiencia requerida:</strong> {yearsOfExperience} años</li>
+                                    <li><strong className='prop-name'>Lugar del puesto de trabajo:</strong> {location}</li>
+                                    <li><strong className='prop-name'>Posibilidad de teletrabajar:</strong>  {remoteJob ? (<>Sí</>) : (<>No</>)}   </li>
+                                    <li><strong className='prop-name'>Fecha de incorporación </strong> {startDate}</li>
+                                    {/*  <li><strong className='prop-name'>Idiomas solicitados: </strong>   {languages.map((language, index) => (
                                         <li key={index}>
                                             {language.name} - Nivel: {language.level}
-                                        </li>))}</li>
+                                        </li>))}</li> */}
                                 </ul>
+                                <div className="mt-1"> {isFilled ? (
+                                    <span className="text-danger">Este proceso ya se ha cerrado</span>
+                                ) : <span className="text-success">Oferta en curso</span>}
+                                </div>
                             </Card.Text>
                         </Card.Body>
                     </Col>

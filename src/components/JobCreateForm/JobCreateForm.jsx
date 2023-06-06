@@ -197,7 +197,7 @@ const JobCreateForm = () => {
                 }
             </Form.Group>
             <div className="d-grid">
-                <Button variant="dark mt-4" type="submit">Añade experiencia</Button>
+                <Button variant="dark mt-4" type="submit">Guarda Oferta</Button>
             </div>
 
 

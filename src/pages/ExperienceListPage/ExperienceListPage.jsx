@@ -1,23 +1,31 @@
-import { Col } from "react-bootstrap"
+import { Col, Container } from "react-bootstrap"
 import ExperiencesCard from "../../components/ExperiencesCard/ExperiencesCard"
 
 
-const ExperienceList = ({ experiences }) => {
+const ExperienceList = ({ experiences, deleteExperience }) => {
 
 
     return (
 
-        < container >
+        <Container className="experiences-box bg-white">
+
             {experiences && experiences.length > 0 ? (
                 experiences.map((experience) => (
-                    <Col key={experiences._id}>
-                        <ExperiencesCard {...experience} />
+
+                    <Col className=" " key={experiences._id}>
+                        <ExperiencesCard {...experience} deleteExperience={deleteExperience} />
+                        <hr />
                     </Col>
+
                 ))
             ) : (
-                <p>No hay experiencias disponibles.</p>
+                <Col className="p-3" >
+                    <p>No hay experiencias disponibles.</p>
+                    <hr />
+                </Col>
+
             )}
-        </container >
+        </Container>
     );
 };
 

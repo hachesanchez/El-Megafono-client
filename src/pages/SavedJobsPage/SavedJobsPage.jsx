@@ -1,24 +1,25 @@
-import { Col, Container } from "react-bootstrap"
-import SavedJobCard from "../../components/SavedJobsCard/SavedJobsCard"
+import { Card, Col, Container } from "react-bootstrap"
+import SavedJobCard from "../../components/SavedJobCard/SavedJobCard"
 
 
-const SavedJobPage = () => {
+const SavedJobsPage = ({ savedJobs }) => {
 
 
     return (
 
-        {/* < Container >
-            {savedJob && savedJob.length > 0 ? (
-                savedJob.map((savedJob) => (
-                    <Col key={savedJob._id}>
-                        <SavedJobsCard {...savedJob} />
+        <>
+            {savedJobs && savedJobs.length > 0 ? (
+                savedJobs.map((savedJobs) => (
+                    <Col className="mt-2" key={savedJobs._id}>
+                        <SavedJobCard {...savedJobs} />
                     </Col>
                 ))
             ) : (
                 <p>Todavía no has guardado trabajos</p>
             )}
-        </Container > */}
+        </>
+
     );
 };
 
-export default SavedJobPage
+export default SavedJobsPage

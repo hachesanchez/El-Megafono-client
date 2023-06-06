@@ -11,5 +11,6 @@
 }
 
 .experience-card-custom {
-    background-color: rgb(255, 255, 255);
+    border: none;
+    background-color: transparent;
 }

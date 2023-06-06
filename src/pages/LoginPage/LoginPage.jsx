@@ -8,11 +8,10 @@ import { AuthContext } from "../../contexts/auth.context";
 const LoginPage = () => {
 
     const navigate = useNavigate();
-    const { isAuthenticated } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
-    if (isAuthenticated) {
-        navigate('/inicio');
-    }
+    user && navigate('/inicio');
+
     return (
 
         <div className="login-page">

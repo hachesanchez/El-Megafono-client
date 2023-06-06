@@ -27,3 +27,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.job-category-prof {
+    color: rgb(127, 127, 127);
+    font-size: 20;
+}

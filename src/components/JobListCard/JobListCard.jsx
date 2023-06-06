@@ -1,15 +1,17 @@
-import { Card, Button, Container, Col, Row } from 'react-bootstrap'
+import { Card, Button, Container, Col, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jobService from "../../services/job.services"
 import { AuthContext } from "../../contexts/auth.context";
 import SaveJob from '../SavedJob/SavedJob';
+import locationIcon from '../../assets/images/ICON-5.png'
+
 
 import './JobListCard.css'
 
 
-const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) => {
+const JobListCard = ({ title, description, grossSalary, contract, location, owner, _id }) => {
 
     const { user } = useContext(AuthContext)
     const navigate = useNavigate();
@@ -36,7 +38,7 @@ const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) 
 
             <Card className='p-3 m-1 JobCard'>
                 <Row >
-                    <Col xs={8}>
+                    <Col xs={9}>
                         <div style={{ display: 'inline-flex', alignItems: 'center' }}>
                             <Link to={`/empleo/${_id}`}>
                                 <Card.Title className='m-3'><h3>{title}</h3></Card.Title>
@@ -46,13 +48,15 @@ const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) 
 
                         <Card.Body>
                             <Card.Text className=''>
-                                <p> Publicado por:  {owner && owner.username}</p>
-                                {description}
-                                <p>Salario bruto anual : {grossSalary}</p>
+                                <p> Publicado por: <strong>{owner && owner.username}</strong></p>
+                                <div className="d-flex align-items-center">
+                                    <Image className="location-icon" src={locationIcon} />
+                                    <p className="mx-2 align-items-center">{location}</p>
+                                </div>
                             </Card.Text>
 
-                            {user && owner && user._id === owner._id && (
-                                <div >
+                            {user && (user._id === owner._id || user.role === 'ADMIN' || user._id === _id) && (
+                                <div>
                                     <Link className='text-primary m-2' to={`/empleo/${_id}/editar`}>
                                         Editar
                                     </Link>
@@ -64,7 +68,7 @@ const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) 
 
                         </Card.Body>
                     </Col>
-                    <Col xs={4} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <Col xs={3} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                         <Row>
                             <div className="d-flex align-items-center justify-content-center">
                                 <Card.Img variant className='job-avatar rounded-circle' src={owner && owner.avatar} alt="Avatar" />
