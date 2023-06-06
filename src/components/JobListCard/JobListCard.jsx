@@ -41,7 +41,7 @@ const JobListCard = ({ title, description, grossSalary, contract, owner, _id }) 
                             <Link to={`/empleo/${_id}`}>
                                 <Card.Title className='m-3'><h3>{title}</h3></Card.Title>
                             </Link>
-                            <SaveJob />
+                            {/*  <SaveJob /> */}
                         </div>
 
                         <Card.Body>

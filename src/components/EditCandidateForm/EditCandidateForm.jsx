@@ -131,29 +131,30 @@ const EditCandidateForm = ({ /* closeModal */ }) => {
             </Form.Group>
 
 
-            <Form.Group className="mb-3">
-                <Form.Label className="mb-3">Categoría laboral</Form.Label>
-                <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
-                    {/* TODO OPCIONAL: CREAR COLECCIÓN DE CATEGORIAS */}
-                    <option value="">Escoge una opción...</option>
-                    <option value="Administración y finanzas">Administración y finanzas</option>
-                    <option value="Comunicación y Marketing">Comunicación y Marketing</option>
-                    <option value="Cooperación">Cooperación</option>
-                    <option value="Dirección y coordinación">Dirección y coordinación</option>
-                    <option value="Gestión de proyectos">Gestión de proyectos</option>
-                    <option value="Legal">Legal</option>
-                    <option value="Diseño">Diseño</option>
-                    <option value="Arquitectura">Arquitectura</option>
-                    <option value="Ciencias de la salud">Ciencias de la salud</option>
-                    <option value="Recursos humanos">Recursos humanos</option>
-                    <option value="Imagen y sonido">Imagen y sonido</option>
-                    <option value="Tecnologías de la información (IT)">Tecnologías de la información (IT)</option>
-                    <option value="Traducción e interpretación">Traducción e interpretación</option>
-                </Form.Select>
-            </Form.Group>
 
             {signupRole === "PROFESIONAL" || signupRole === "ADMIN" ? (
                 <>
+                    <Form.Group className="mb-3">
+                        <Form.Label className="mb-3">Categoría laboral</Form.Label>
+                        <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
+                            {/* TODO OPCIONAL: CREAR COLECCIÓN DE CATEGORIAS */}
+                            <option value="">Escoge una opción...</option>
+                            <option value="Administración y finanzas">Administración y finanzas</option>
+                            <option value="Comunicación y Marketing">Comunicación y Marketing</option>
+                            <option value="Cooperación">Cooperación</option>
+                            <option value="Dirección y coordinación">Dirección y coordinación</option>
+                            <option value="Gestión de proyectos">Gestión de proyectos</option>
+                            <option value="Legal">Legal</option>
+                            <option value="Diseño">Diseño</option>
+                            <option value="Arquitectura">Arquitectura</option>
+                            <option value="Ciencias de la salud">Ciencias de la salud</option>
+                            <option value="Recursos humanos">Recursos humanos</option>
+                            <option value="Imagen y sonido">Imagen y sonido</option>
+                            <option value="Tecnologías de la información (IT)">Tecnologías de la información (IT)</option>
+                            <option value="Traducción e interpretación">Traducción e interpretación</option>
+                        </Form.Select>
+                    </Form.Group>
+
                     <Form.Group className="mb-3" controlid="yearsOfExperience">
                         <Form.Label>Años de experiencia</Form.Label>
                         <Form.Control

@@ -32,8 +32,12 @@ class UserService {
         return this.api.get(`/getCandidateUsers`);
     }
 
-    addSavedJob(userId, jobId) { //TODO: NO FUNCIONA
-        return this.api.post(`/savedJob/${userId}`, { jobId });
+    addSavedJob(userId, jobId) { //TODO: NO FUNCIONA  
+        return this.api.put(`/addSavedJob/${jobId}`, { userId })
+    }
+
+    deleteSavedJob(userId, jobId) { //TODO: NO FUNCIONA
+        return this.api.put(`/deleteSavedJob/${jobId}`, { userId });
     }
 
     editProfile(userId, userData) {
@@ -43,7 +47,6 @@ class UserService {
     deleteProfile(userId) {
         return this.api.delete(`/delete/${userId}`);
     }
-
 
 }
 

@@ -17,27 +17,24 @@ const JobsListPage = () => {
     const [jobs, setJobs] = useState()
     const [jobsBackup, setJobsBackup] = useState()
 
+
     // TODO: Que los empleos desaparezcan al borrarlos
     useEffect(() => {
         loadJobs()
     }, [/* deleteJobId */])
 
 
-
-
-
     const loadJobs = () => {
-        //TODO: Deberían aparece sólo los de la categoría del user logueado
+        //TODO si el user cambia de Categoría, no se actualizan los empleos
         const userJobCategory = user?.jobCategory
 
         jobService
 
             .getAllJobs({ jobCategory: userJobCategory })
             .then(({ data }) => {
-                console.log('el job category del logueado----', userJobCategory)
-                console.log('el job category del post----', data)
-                setJobs(data);
-                setJobsBackup(data)
+                const categoryJobs = data.filter(job => job.jobCategory === userJobCategory)
+                setJobs(categoryJobs);
+                setJobsBackup(categoryJobs)
             })
 
 

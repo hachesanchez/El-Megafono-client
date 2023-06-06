@@ -9,3 +9,8 @@
 .prop-name {
     color: rgb(11, 145, 147)
 }
+
+.saveicon {
+    max-height: 40px;
+    background-color: none;
+}

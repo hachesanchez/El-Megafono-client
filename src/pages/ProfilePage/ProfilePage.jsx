@@ -9,6 +9,7 @@ import experiencesService from "../../services/experiences.services"
 import ExperienceList from "../ExperienceListPage/ExperienceListPage"
 import ExperienceCreateForm from "../../components/ExperienceCreateForm/ExperienceCreateForm"
 import EditCandidateForm from '../../components/EditCandidateForm/EditCandidateForm'
+import SavedJobPage from "../SavedJobsPage/SavedJobsPage"
 
 
 
@@ -116,7 +117,7 @@ const ProfilePage = () => {
             <Row>
                 <Col className="offset-md-1" xs={5}>
                     <Col>
-                        <p> 1. COMPONENTE CARD DE OFERTAS GUARDADAS</p>
+                        {/*    < SavedJobPage /> */}
                     </Col>
                     <Col>
                         <p> 2. COMPONENTE CARD DE OFERTAS APLICADAS</p>

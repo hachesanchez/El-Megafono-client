@@ -4,7 +4,7 @@ import unsaveJobImg from '../../../src/assets/images/save-icon1.png'
 import saveJobImg from '../../../src/assets/images/save-icon2.png'
 
 
-const SaveJob = ({ userId, jobId }) => {
+const SaveJob = ({ saved, setSaved }) => {
 
     const [savejob, setSaveJob] = useState(false);
 

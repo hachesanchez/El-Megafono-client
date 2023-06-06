@@ -24,7 +24,6 @@ const JobDetailsPage = () => {
 
 
     const loadJob = () => {
-
         jobService
             .getOneJob(id)
             .then(({ data }) => {
@@ -33,8 +32,9 @@ const JobDetailsPage = () => {
             .catch((error) => {
                 console.log(error);
             });
-
     }
+
+
 
     return (
         <Container>
@@ -43,7 +43,7 @@ const JobDetailsPage = () => {
                     Volver a todas las ofertas
                 </Button>
             </Link>
-            {job && <JobDetailsCard {...job} />}
+            {job && <JobDetailsCard {...job} loadJob={loadJob} />}
             <ApplicantsListCard />
         </Container>
     )

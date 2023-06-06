@@ -51,17 +51,36 @@ const HomeCard = () => {
 
             <section className='weAre-section'>
                 <p className='weAre-text'>
-                    Somos un colectivo de profesionales y activistas de la comunicación para el cambio social
-                    ¿Cómo podemos ayudarnos?
+                    ¡Bienvenido a nuestra plataforma de conexión profesional! Somos una comunidad en línea diseñada para unir
+                    a profesionales de diversos campos con organizaciones
+                    y entidades del tercer sector que buscan personas con una sensibilidad especial.
                 </p>
             </section>
             <section className='what-section'>
                 <p className='what-text'>
-                    Si trabajas en una ONG, una fundación, una institución pública, o una empresa con RSC y tienes en mente
-                    realizar una campaña de comunicación, un vídeo, un evento, hagámoslo juntas.
-                    En lugar de contratar a una agencia de publicidad o a una especialista externa, cuenta con nosotras.
-                    Además de aportar nuestra capacidad creativa y artística, te acompañaremos en todo el proceso para
-                    lograr materiales verdaderamente transformadores y valiosos para la ciudadanía.
+                    Creemos en el poder de la colaboración y la sinergia entre profesionales y organizaciones comprometidas
+                    con un impacto positivo en la sociedad. Únete a nuestra comunidad hoy mismo y descubre nuevas
+                    oportunidades, conexiones significativas y proyectos inspiradores. Juntos, podemos marcar la diferencia
+                    y construir un mundo mejor.
+                    <br />
+                    <br />
+                    Aquí podrás encontrar una amplia gama de profesionales calificados, desde expertos en desarrollo comunitario
+                    hasta especialistas en educación inclusiva, pasando por profesionales de la salud, servicios sociales, medio ambiente
+                    y mucho más. Nuestro objetivo es crear un espacio donde los talentos y las pasiones se combinen con las necesidades
+                    y las misiones de las organizaciones del tercer sector.
+                    <br />
+                    <br />
+                    Para los profesionales, ofrecemos una plataforma fácil de usar que te permitirá mostrar tu experiencia,
+                    habilidades y logros destacados. Podrás crear un perfil completo, destacar tus áreas de especialización y
+                    conectarte con organizaciones que compartan tus valores y objetivos. Ya sea que busques una oportunidad laboral a tiempo
+                    completo, un proyecto a corto plazo o voluntariado, aquí encontrarás un espacio para hacer brillar tu talento y contribuir
+                    a causas significativas.
+                    <br />
+                    <br />
+                    Para las organizaciones y entidades del tercer sector, ofrecemos un directorio integral de profesionales con una
+                    sensibilidad especial en una amplia gama de áreas. Podrás buscar perfiles basados en criterios específicos, como habilidades,
+                    experiencia, ubicación y afinidad con tu misión. Nuestra plataforma te brindará acceso a una red de profesionales comprometidos
+                    y apasionados que pueden fortalecer tu equipo y ayudarte a lograr tus objetivos sociales.
                 </p>
 
             </section>
