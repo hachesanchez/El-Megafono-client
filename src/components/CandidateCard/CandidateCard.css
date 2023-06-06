@@ -4,7 +4,7 @@
 }
 
 .location {
-    color: gray;
+    color: rgb(103, 103, 103);
 }
 
 .shadow-sm {
@@ -13,4 +13,9 @@
 
 .shadow-md {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.jobCategory-candidate {
+    color: gray;
+    font-size: 14px;
 }

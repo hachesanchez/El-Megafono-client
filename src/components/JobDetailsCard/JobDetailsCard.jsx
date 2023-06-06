@@ -99,7 +99,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                                 <ul>
                                     <li><strong className='prop-name'>Salario bruto anual:</strong> {grossSalary}€</li>
                                     <li> <strong className='prop-name'>Tipo de contrato</strong> {contract}</li>
-                                    <li><strong className='prop-name'>Experiencia requerida:</strong> {yearsOfExperience} años</li>
+                                    <li><strong className='prop-name'>Experiencia requerida:</strong> {yearsOfExperience} año(s)</li>
                                     <li><strong className='prop-name'>Lugar del puesto de trabajo:</strong> {location}</li>
                                     <li><strong className='prop-name'>Posibilidad de teletrabajar:</strong>  {remoteJob ? (<>Sí</>) : (<>No</>)}   </li>
                                     <li><strong className='prop-name'>Fecha de incorporación </strong> {startDate}</li>

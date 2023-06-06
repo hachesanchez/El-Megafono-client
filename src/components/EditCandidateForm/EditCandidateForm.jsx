@@ -4,6 +4,8 @@ import userService from "../../services/user.services"
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditCandidateForm.css";
 import { AuthContext } from "../../contexts/auth.context";
+import uploadServices from "../../services/uploader.services"
+
 
 // TODO OPCIONAL: GRANULARIZAR COMPONENTE
 
@@ -15,6 +17,7 @@ const EditCandidateForm = ({ /* closeModal */ }) => {
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
+        avatar: '',
         description: '',
         location: '',
         jobCategory: '',
@@ -77,6 +80,7 @@ const EditCandidateForm = ({ /* closeModal */ }) => {
             });
     }
 
+
     const handleLanguagesChange = (e, idx) => {
 
         const { name, value } = e.target
@@ -87,8 +91,23 @@ const EditCandidateForm = ({ /* closeModal */ }) => {
         setSignupData({ ...signupData, languages: languagesCopy })
     }
 
+
+    const handleFileUpload = e => {
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(({ data }) => {
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
     const {
         username,
+        avatar,
         description,
         location,
         email,
@@ -119,6 +138,11 @@ const EditCandidateForm = ({ /* closeModal */ }) => {
                     <Form.Control type="email" defaultValue={email} onChange={handleInputChange} name="email" />
                 </Form.Group>
             </Row>
+
+            <Form.Group className="mb-3" controlId="avatar">
+                <Form.Label>Avatar</Form.Label>
+                <Form.Control type="file" onChange={handleFileUpload} />
+            </Form.Group>
 
             <Form.Group className="mb-3" controlid="description">
                 <Form.Label className="signup-label">Description</Form.Label>

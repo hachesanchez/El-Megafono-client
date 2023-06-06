@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form } from "react-bootstrap"
 
 
-const JobSearch = ({ filterJobByLocation }) => {
+const JobSearch = ({ filterJobByLocation, filterAllJobs }) => {
 
     const [locationQuery, setLocationQuery] = useState('')
 

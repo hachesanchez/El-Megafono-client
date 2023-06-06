@@ -27,7 +27,7 @@ const CandidateCard = ({ username, avatar, location, availability, jobCategory, 
                 </Link>
                 <Card.Text>
                     <h6 className='location'>{location}</h6>
-                    {jobCategory}
+                    <p className='jobCategory-candidate'> {jobCategory}</p>
                 </Card.Text>
                 <Card.Text> {availability ? <p>Disponible</p> : <p>No disponible</p>}</Card.Text>
             </Card.Body>

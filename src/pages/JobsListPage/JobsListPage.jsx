@@ -11,69 +11,67 @@ import { Col, Row } from "react-bootstrap"
 
 
 const JobsListPage = () => {
-
-
     const { user } = useContext(AuthContext)
-    const [jobs, setJobs] = useState()
-    const [jobsBackup, setJobsBackup] = useState()
+    const [jobs, setJobs] = useState([])
+    const [filteredJobs, setFilteredJobs] = useState([])
 
-
-    // TODO: Que los empleos desaparezcan al borrarlos
     useEffect(() => {
         loadJobs()
     }, [/* deleteJobId */])
 
-
     const loadJobs = () => {
-        //TODO si el user cambia de Categoría, no se actualizan los empleos
         const userJobCategory = user?.jobCategory
 
-        jobService
-
-            .getAllJobs({ jobCategory: userJobCategory })
-            .then(({ data }) => {
-                const categoryJobs = data.filter(job => job.jobCategory === userJobCategory)
-                setJobs(categoryJobs);
-                setJobsBackup(categoryJobs)
-            })
-
-
-            .catch((error) => {
-                console.log(error);
-            });
-
+        if (user?.role === "ADMIN") {
+            jobService
+                .getAllJobs()
+                .then(({ data }) => {
+                    setJobs(data)
+                    setFilteredJobs(data)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        } else {
+            jobService
+                .getAllJobs({ jobCategory: userJobCategory })
+                .then(({ data }) => {
+                    const categoryJobs = data.filter(
+                        (job) => job.jobCategory === userJobCategory
+                    )
+                    setJobs(categoryJobs)
+                    setFilteredJobs(categoryJobs)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     }
 
-    const filterJobByLocation = query => {
-        const filteredJobs = jobsBackup.filter(elm => elm.location.toLowerCase().includes(query.toLowerCase()))
-        setJobs(filteredJobs)
+    const filterJobByLocation = (query) => {
+        const filteredJobs = jobs.filter((elm) =>
+            elm.location.toLowerCase().includes(query.toLowerCase())
+        )
+        setFilteredJobs(filteredJobs)
     }
-
 
     return (
-
         <Container>
             <Row>
-                <Col md={{ span: 6, offset: 3 }}  >
+                <Col md={{ span: 6, offset: 3 }}>
                     <JobSearch filterJobByLocation={filterJobByLocation} />
                 </Col>
-
             </Row>
-
             <Row>
-                {
-                    !jobs ? <Loader /> :
-                        jobs.map(elm => {
-                            return (
-                                <JobListCard {...elm} key={elm._id} />
-                            )
-                        })
-                }
+                {!filteredJobs ? (
+                    <Loader />
+                ) : (
+                    filteredJobs.map((elm) => <JobListCard {...elm} key={elm._id} />)
+                )}
             </Row>
-
         </Container>
-
     )
 }
 
 export default JobsListPage
+

@@ -42,8 +42,6 @@ const SignupForm = ({ closeModal }) => {
 
     const handleFileUpload = e => {
 
-        alert('palante')
-
         const formData = new FormData()
         formData.append('imageData', e.target.files[0])
 
