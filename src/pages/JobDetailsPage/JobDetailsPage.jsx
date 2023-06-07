@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { Container, Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
-
 import { AuthContext } from '../../contexts/auth.context'
 import jobService from '../../services/job.services'
 import Loader from '../../components/Loader/Loader'
 import './JobDetailsPage.css'
 import JobDetailsCard from '../../components/JobDetailsCard/JobDetailsCard'
 import { useParams } from 'react-router-dom'
-import ApplicantsListCard from '../../components/ApplicantsListCard/ApplicantsListCard'
 
 
 const JobDetailsPage = () => {
@@ -44,7 +42,7 @@ const JobDetailsPage = () => {
                 </Button>
             </Link>
             {job && <JobDetailsCard {...job} loadJob={loadJob} />}
-            <ApplicantsListCard />
+
         </Container>
     )
 }

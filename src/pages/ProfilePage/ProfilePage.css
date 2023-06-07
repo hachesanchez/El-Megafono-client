@@ -1,3 +1,21 @@
 .profilePic {
     max-width: 300px;
 }
+
+.btn-crear {
+    padding: 7px;
+    font-weight: 500;
+    color: black;
+    border-color: none;
+    border-radius: 50px;
+    background-color: #EBE215
+}
+
+.btn-crear:hover {
+    color: white;
+    background-color: #464646
+}
+
+.ofertas-tilte {
+    color: rgb(89, 89, 89);
+}

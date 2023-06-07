@@ -1,3 +1,8 @@
 .icon {
-    max-width: 35px;
+    max-width: 25px;
+}
+
+.details-extra {
+    background-color: white;
+    padding: 40px;
 }

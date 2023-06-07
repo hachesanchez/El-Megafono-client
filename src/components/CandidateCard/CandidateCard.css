@@ -1,4 +1,8 @@
-.CandidateCard img {
+.availability-icon {
+    max-width: 25px;
+}
+
+.candidate-avatar {
     height: 180px;
     object-fit: cover;
 }

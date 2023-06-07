@@ -18,3 +18,21 @@
 .job-category-details {
     color: gray;
 }
+
+.JobCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.is-filled-text {
+    font-weight: bold;
+}
+
+.avatar-saved-job {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}

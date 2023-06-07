@@ -12,23 +12,6 @@ import locationIcon from '../../assets/images/ICON-5.png'
 const JobOwnedCard = ({ _id, title, jobCategory, location, isFilled, owner, deleteJob }) => {
 
     const { user } = useContext(AuthContext)
-    /*   const navigate = useNavigate();
-      const [deletedJobId, setDeletedJobId] = useState(null)
-  
-      const handleDeleteJob = () => {
-          const jobId = _id;
-  
-          jobService
-              .deleteJob(jobId)
-              .then((response) => {
-                  setDeletedJobId(jobId);
-                  navigate("/perfil");
-              })
-              .catch((error) => {
-                  console.log(error);
-              });
-      } */
-
 
     return (
 

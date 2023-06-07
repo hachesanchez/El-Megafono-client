@@ -1,7 +1,6 @@
-import { Card, Container, Col, Row, Form, Button, Modal } from 'react-bootstrap'
+import { Card, Container, Col, Row, Image, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './JobDetailsCard.css';
-import SaveJob from '../SavedJob/SavedJob';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/auth.context';
 import UserService from '../../services/user.services';
@@ -10,17 +9,21 @@ import saveJobImg from '../../../src/assets/images/save-icon2.png'
 import Loader from '../../components/Loader/Loader'
 import userService from '../../services/user.services';
 
+
 const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract, owner, yearsOfExperience, remoteJob, startDate, location, languages, isFilled, _id, loadJob }) => {
 
 
     const { user } = useContext(AuthContext)
     const [showModal, setShowModal] = useState(false)
     const [userSaved, setUserSaved] = useState([])
+    const [jobSavedBy, setJobSavedBy] = useState([])
 
 
 
     useEffect(() => {
-        getProfile();
+        getProfile()
+        getAllProfiles()
+
     }, [])
 
 
@@ -35,6 +38,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
             });
     }
 
+
     const handleSaveJob = () => {
         UserService
             .addSavedJob(user._id, _id)
@@ -46,6 +50,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                 console.log(error);
             });
     }
+
 
     const handleDeleteJob = () => {
         UserService
@@ -59,46 +64,69 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
     }
 
 
+    const getAllProfiles = () => {
+        userService
+            .getAllProfiles()
+            .then(({ data }) => {
+                console.log('la data es----', data)
+                setJobSavedBy(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }
+
     return (
+
 
         <Container>
 
             <Card className='p-3 m-1 JobCard'>
+
+                <Row >
+                    <Col xs={{ span: 2, offset: 10 }}>
+                        <div className="m-2 is-filled-text"> {isFilled ? (
+                            <span className="text-danger">Este proceso ya se ha cerrado</span>
+                        ) : <span className="text-success">Oferta en curso</span>}
+                        </div>
+                    </Col>
+                </Row >
                 <Row >
                     <Card.Text className='mx-3 mb-2 job-category-details'>{jobCategory}</Card.Text>
                 </Row>
+
                 <Row >
                     <Col xs={12} sm={12} md={8}>
-                        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
 
+                        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
                             <Card.Title className='m-2'><h1>{title}</h1></Card.Title>
 
                             {!user ? <Loader /> : console.log(userSaved)}
 
                             {
-                                userSaved.some(elm => elm._id === _id)
-                                    ?
-                                    <Button variant='link' onClick={handleDeleteJob}>
-                                        {/*    <h1>ELIMINAR</h1> */}
-                                        <img className='saveicon' src={saveJobImg} />
-                                        {/*   <SaveJob saved={savedJob} setSaved={setSavedJob} /> */}
-                                    </Button>
-                                    :
-                                    <Button variant='link' onClick={handleSaveJob}>
+                                user.role !== "ORGANIZACIÓN" && (
 
-                                        {/*  <SaveJob saved={savedJob} setSaved={setSavedJob} /> */}
-                                        <img className='saveicon' src={unsaveJobImg} />
-                                    </Button>
+                                    userSaved.some(elm => elm._id === _id)
+                                        ?
+                                        <Button variant='link' onClick={handleDeleteJob}>
+                                            <img className='saveicon' src={saveJobImg} />
+                                        </Button>
+                                        :
+                                        <Button variant='link' onClick={handleSaveJob}>
+                                            <img className='saveicon' src={unsaveJobImg} />
+                                        </Button>
+                                )
                             }
-
                         </div>
+
                         <Card.Body>
                             <Card.Text className=' '>
                                 <p> <strong >{owner && owner.username}</strong>  </p>
                                 <p>{description}</p>
                                 <ul>
                                     <li><strong className='prop-name'>Salario bruto anual:</strong> {grossSalary}€</li>
-                                    <li> <strong className='prop-name'>Tipo de contrato</strong> {contract}</li>
+                                    <li><strong className='prop-name'>Tipo de contrato</strong> {contract}</li>
                                     <li><strong className='prop-name'>Experiencia requerida:</strong> {yearsOfExperience} año(s)</li>
                                     <li><strong className='prop-name'>Lugar del puesto de trabajo:</strong> {location}</li>
                                     <li><strong className='prop-name'>Posibilidad de teletrabajar:</strong>  {remoteJob ? (<>Sí</>) : (<>No</>)}   </li>
@@ -108,10 +136,6 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                                             {language.name} - Nivel: {language.level}
                                         </li>))}</li> */}
                                 </ul>
-                                <div className="mt-1"> {isFilled ? (
-                                    <span className="text-danger">Este proceso ya se ha cerrado</span>
-                                ) : <span className="text-success">Oferta en curso</span>}
-                                </div>
                             </Card.Text>
                         </Card.Body>
                     </Col>
@@ -120,15 +144,24 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                         <Row>
                             <Card.Img variant="default" className='job-avatar-details rounded-circle mt-5' src={owner && owner.avatar} alt="Avatar" />
                         </Row>
-                        {/* <Row className='d-flex justify-content-between'>
-                            <Link to="#" className="btn btn-success" >
-                                Aplicar
-                            </Link>
-                            onClick={handleApplyExperience} 
-                        </Row> */}
                     </Col>
-
                 </Row>
+
+                <hr></hr>
+
+                {owner && (
+                    <Row className='d-flex'>
+                        {jobSavedBy
+                            .filter(user => user.savedJob.includes(_id))
+                            .map(user => (
+                                <Col xs={5} sm={2} md={1} >
+                                    <Link to={`/profesionales/${user._id}`} key={user._id} className="card-link ">
+                                        <Image className="avatar-saved-job" src={user.avatar} alt="Avatar" roundedCircle />
+                                    </Link>
+                                </Col>
+                            ))}
+                    </Row>
+                )}
             </Card>
 
 
@@ -147,5 +180,14 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
 }
 
 export default JobDetailsCard
+
+
+
+{/* <Row className='d-flex justify-content-between'>
+                            <Link to="#" className="btn btn-success" >
+                                Aplicar
+                            </Link>
+                            onClick={handleApplyExperience} 
+                        </Row> */}
 
 

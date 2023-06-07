@@ -1,8 +1,9 @@
-import { Card } from 'react-bootstrap'
+import { Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useContext, useState } from "react";
+import { useState } from "react";
+import availableIcon from '../../assets/images/available-icon1.png'
+import notAvailableIcon from '../../assets/images/available-icon2.png'
 import './CandidateCard.css'
-import FavouriteCandidate from '../FavouriteCandidate/FavouriteCandidate'
 
 
 const CandidateCard = ({ username, avatar, location, availability, jobCategory, _id }) => {
@@ -14,13 +15,15 @@ const CandidateCard = ({ username, avatar, location, availability, jobCategory, 
 
     const shadowClass = isHovered ? 'shadow-md' : 'shadow-sm';
 
+
     return (
+
         <Card
             className={`mb-3 CandidateCard ${shadowClass}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <Card.Img variant='top' src={avatar} />
+            <Card.Img variant='top candidate-avatar' src={avatar} />
             <Card.Body>
                 <Link to={`/profesionales/${_id}`} className="card-link">
                     <Card.Title><strong>{username}</strong></Card.Title>
@@ -29,7 +32,17 @@ const CandidateCard = ({ username, avatar, location, availability, jobCategory, 
                     <h6 className='location'>{location}</h6>
                     <p className='jobCategory-candidate'> {jobCategory}</p>
                 </Card.Text>
-                <Card.Text> {availability ? <p>Disponible</p> : <p>No disponible</p>}</Card.Text>
+                <Row>
+                    <Col className='p-1' xs={{ span: 3, offset: 9 }}>
+                        <div className="availability-icon justify-content-end">
+                            {availability ? (
+                                <img className='icon m-3' src={availableIcon} alt="Disponible" />
+                            ) : (
+                                <img className='icon m-3' src={notAvailableIcon} alt="No disponible" />
+                            )}
+                        </div>
+                    </Col>
+                </Row>
             </Card.Body>
         </Card >
     )
@@ -38,6 +51,3 @@ const CandidateCard = ({ username, avatar, location, availability, jobCategory, 
 export default CandidateCard
 
 
-{/*    <div style={{ display: 'block' }}>
-    <Link to={`/profesionales/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
-</div> */}

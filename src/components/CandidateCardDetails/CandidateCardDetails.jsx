@@ -41,9 +41,9 @@ const CandidateCardDetails = ({ user: profileUser }) => {
                     </Col>
 
                     <Col xs={12} sm={12} md={9} className="profile-col">
-                        <h1>Bienvenidx al perfil de {profileUser.username}</h1>
-                        <h4 className="job-category">{profileUser.jobCategory}</h4>
-                        <p className="description">{profileUser.description}</p>
+                        <h1 className="justify-text-center mt-1">Bienvenidx al perfil de {profileUser.username}</h1>
+                        <h4 className="job-category mt-1">{profileUser.jobCategory}</h4>
+                        <p className="description m-3">{profileUser.description}</p>
 
                         {/*  //TODO: NO OCULTA LOS BOTONES Y SE PUEDE ACCEDER POR PARAMS Y EDITAR LO DE OTRA PERSONA*/}
                         <Row className="align-items-center text-center mt-4">
@@ -66,9 +66,9 @@ const CandidateCardDetails = ({ user: profileUser }) => {
                                     </div>
                                 )}
                             </Col>
-                            <Col md={1}>
+                            {/*  <Col md={1}>
                                 <FavouriteCandidate />
-                            </Col>
+                            </Col> */}
 
                         </Row>
                     </Col>

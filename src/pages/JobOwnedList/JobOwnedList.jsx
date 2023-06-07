@@ -6,8 +6,7 @@ const JobOwnedList = ({ jobs, deleteJob }) => {
 
     return (
 
-        <Container className="job-owned-box">
-
+        <div className="job-owned-box">
 
             {jobs && jobs.length > 0 ? (
                 jobs.map((job) => (
@@ -25,7 +24,7 @@ const JobOwnedList = ({ jobs, deleteJob }) => {
             )
             }
 
-        </Container>
+        </div>
     )
 }
 

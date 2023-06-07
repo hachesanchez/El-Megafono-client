@@ -32,15 +32,11 @@ class UserService {
         return this.api.get(`/getCandidateUsers`);
     }
 
-    /*  getOwnedJobs() {
-         return this.api.get(`/getOwnedJobs`);
-     } */
-
-    addSavedJob(userId, jobId) { //TODO: NO FUNCIONA  
+    addSavedJob(userId, jobId) {
         return this.api.put(`/addSavedJob/${jobId}`, { userId })
     }
 
-    deleteSavedJob(userId, jobId) { //TODO: NO FUNCIONA
+    deleteSavedJob(userId, jobId) {
         return this.api.put(`/deleteSavedJob/${jobId}`, { userId });
     }
 
