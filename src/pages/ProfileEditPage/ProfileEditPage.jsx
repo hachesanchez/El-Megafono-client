@@ -1,14 +1,16 @@
 import EditCandidateForm from '../../components/EditCandidateForm/EditCandidateForm'
-import { Container } from "react-bootstrap"
+import { Container, Col } from "react-bootstrap"
 import './ProfileEditPage.css'
+
+
 
 const ProfileEditPage = () => {
 
     return (
         <Container>
-            <h1>Editar perfil</h1>
-            <hr className='mb-4' />
-            <EditCandidateForm />
+            <Col className='offset-2 p-1' md={8}>
+                <EditCandidateForm />
+            </Col>
         </Container>
     )
 }

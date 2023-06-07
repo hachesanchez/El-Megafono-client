@@ -60,58 +60,65 @@ const ExperienceEditForm = () => {
     const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES");
 
     return (
-        <Form onSubmit={handleSubmit} className="edit-experience-form">
-            <Form.Group className="mb-3" controlId="title">
-                <Form.Label className="signup-label">Puesto</Form.Label>
-                <Form.Control
-                    type="text"
-                    defaultValue={title}
-                    onChange={handleInputChange}
-                    name="title"
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="organization">
-                <Form.Label className="signup-label">Organización o empresa</Form.Label>
-                <Form.Control
-                    type="text"
-                    defaultValue={organization}
-                    onChange={handleInputChange}
-                    name="organization"
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="startDate">
-                <Form.Label className="signup-label">Fecha de inicio</Form.Label>
-                <Form.Control
-                    type="text"
-                    /* defaultValue={formattedStartDate} */
-                    onChange={handleInputChange}
-                    name="startDate"
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="endDate">
-                <Form.Label className="signup-label">Fecha fin</Form.Label>
-                <Form.Control
-                    type="text"
-                    /* defaultValue={formattedEndDate} */
-                    onChange={handleInputChange}
-                    name="endDate"
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="description">
-                <Form.Label className="signup-label">Descripción</Form.Label>
-                <Form.Control
-                    type="text"
-                    defaultValue={description}
-                    onChange={handleInputChange}
-                    name="description"
-                />
-            </Form.Group>
-            <div className="d-grid">
-                <Button variant="dark mt-4 mb-4" type="submit">
-                    Guardar cambios
-                </Button>
-            </div>
-        </Form>
+
+        <Container>
+
+            <h1 className="estas-editando" >Estás editando en tu CV:</h1>
+            <h4 className="mb-5 mx-5"> <em>{title}</em></h4>
+
+            <Form onSubmit={handleSubmit} className="edit-experience-form">
+                <Form.Group className="mb-3" controlId="title">
+                    <Form.Label className="signup-label">Puesto</Form.Label>
+                    <Form.Control
+                        type="text"
+                        defaultValue={title}
+                        onChange={handleInputChange}
+                        name="title"
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="organization">
+                    <Form.Label className="signup-label">Organización o empresa</Form.Label>
+                    <Form.Control
+                        type="text"
+                        defaultValue={organization}
+                        onChange={handleInputChange}
+                        name="organization"
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="startDate">
+                    <Form.Label className="signup-label">Fecha de inicio</Form.Label>
+                    <Form.Control
+                        type="text"
+                        /* defaultValue={formattedStartDate} */
+                        onChange={handleInputChange}
+                        name="startDate"
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="endDate">
+                    <Form.Label className="signup-label">Fecha fin</Form.Label>
+                    <Form.Control
+                        type="text"
+                        /* defaultValue={formattedEndDate} */
+                        onChange={handleInputChange}
+                        name="endDate"
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label className="signup-label">Descripción</Form.Label>
+                    <Form.Control
+                        type="text"
+                        defaultValue={description}
+                        onChange={handleInputChange}
+                        name="description"
+                    />
+                </Form.Group>
+                <div className="d-grid">
+                    <Button variant="dark mt-4 mb-4" type="submit">
+                        Guardar cambios
+                    </Button>
+                </div>
+            </Form>
+        </Container>
     );
 };
 

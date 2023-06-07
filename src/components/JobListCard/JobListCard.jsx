@@ -49,9 +49,9 @@ const JobListCard = ({ title, description, grossSalary, contract, location, owne
                         <Card.Body>
                             <Card.Text className=''>
                                 <p> Publicado por: <strong>{owner && owner.username}</strong></p>
-                                <div className="d-flex align-items-center">
-                                    <Image className="location-icon" src={locationIcon} />
-                                    <p className="mx-2 align-items-center">{location}</p>
+                                <div className="languages-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
+                                    <Image className="location-icon md-2 mr-1" src={locationIcon} />
+                                    {location}
                                 </div>
                             </Card.Text>
 
@@ -80,7 +80,6 @@ const JobListCard = ({ title, description, grossSalary, contract, location, owne
                                     Detalles de la oferta
                                 </Button>
                             </Link>
-
 
                         </Row>
                     </Col>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Col, Container, Row, Image, Card } from 'react-bootstrap';
-import './HomeCard.css';
 import headerImg from '../../assets/images/Header-3.jpg'
+import './HomeCard.css';
 
 
 const HomeCard = () => {

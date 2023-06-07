@@ -17,13 +17,14 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
     const [showModal, setShowModal] = useState(false)
     const [userSaved, setUserSaved] = useState([])
     const [jobSavedBy, setJobSavedBy] = useState([])
+    const [formattedStartDate, setFormattedStartDate] = useState('');
 
 
 
     useEffect(() => {
         getProfile()
         getAllProfiles()
-
+        formatStartDate()
     }, [])
 
 
@@ -68,17 +69,23 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
         userService
             .getAllProfiles()
             .then(({ data }) => {
-                console.log('la data es----', data)
                 setJobSavedBy(data);
             })
             .catch((error) => {
                 console.log(error);
             });
-
     }
 
-    return (
+    const formatStartDate = () => {
+        const formattedDate = new Date(startDate)
+        const month = formattedDate.getMonth() + 1
+        const year = formattedDate.getFullYear().toString()
+        setFormattedStartDate(`${month}/${year}`)
+    }
 
+    console.log(languages)
+
+    return (
 
         <Container>
 
@@ -130,11 +137,25 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                                     <li><strong className='prop-name'>Experiencia requerida:</strong> {yearsOfExperience} año(s)</li>
                                     <li><strong className='prop-name'>Lugar del puesto de trabajo:</strong> {location}</li>
                                     <li><strong className='prop-name'>Posibilidad de teletrabajar:</strong>  {remoteJob ? (<>Sí</>) : (<>No</>)}   </li>
-                                    <li><strong className='prop-name'>Fecha de incorporación </strong> {startDate}</li>
-                                    {/*  <li><strong className='prop-name'>Idiomas solicitados: </strong>   {languages.map((language, index) => (
-                                        <li key={index}>
-                                            {language.name} - Nivel: {language.level}
-                                        </li>))}</li> */}
+                                    <li><strong className='prop-name'>Fecha de incorporación </strong> {formattedStartDate}</li>
+
+                                    {/* TODO: NO LLEGAN LOS IDIOMAS */}
+                                    {languages.length === 0 ? (
+                                        <li>
+                                            <strong className='prop-name'>Idiomas solicitados:</strong> No se especificaron idiomas.
+                                        </li>
+                                    ) : (
+                                        <li>
+                                            <strong className='prop-name'>Idiomas solicitados:</strong>
+                                            <ul>
+                                                {languages.map((language, index) => (
+                                                    <li key={index}>
+                                                        <span>{language.name} - Nivel: {language.level}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                    )}
                                 </ul>
                             </Card.Text>
                         </Card.Body>
@@ -149,7 +170,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
 
                 <hr></hr>
 
-                {owner && (
+                {owner && user && user._id === owner._id && (
                     <Row className='d-flex'>
                         {jobSavedBy
                             .filter(user => user.savedJob.includes(_id))
@@ -162,6 +183,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                             ))}
                     </Row>
                 )}
+
             </Card>
 
 

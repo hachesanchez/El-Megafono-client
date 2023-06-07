@@ -3,10 +3,9 @@ import { Container, Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import jobService from '../../services/job.services'
-import Loader from '../../components/Loader/Loader'
-import './JobDetailsPage.css'
 import JobDetailsCard from '../../components/JobDetailsCard/JobDetailsCard'
 import { useParams } from 'react-router-dom'
+import './JobDetailsPage.css'
 
 
 const JobDetailsPage = () => {
@@ -35,13 +34,18 @@ const JobDetailsPage = () => {
 
 
     return (
+
         <Container>
-            <Link to={`/empleos`} className='d-flex align-items-center  '>
-                <Button variant="outline-dark" size="sm">
-                    Volver a todas las ofertas
-                </Button>
-            </Link>
+
+            {user?.role !== "ORGANIZACIÓN" && (
+                <Link to={`/empleos`} className='d-flex align-items-center  '>
+                    <Button variant="outline-dark" size="sm">
+                        Volver a todas las ofertas
+                    </Button>
+                </Link>
+            )}
             {job && <JobDetailsCard {...job} loadJob={loadJob} />}
+
 
         </Container>
     )

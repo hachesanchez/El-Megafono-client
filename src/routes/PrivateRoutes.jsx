@@ -12,7 +12,6 @@ const PrivateRoute = () => {
     }
 
     if (!user) {
-        //TODO, SI PONGO /INICIO REDIRIGE PERO AL CERRAR SESIÓN TE VAS A LA MIERDA
         return <Navigate to="/acceder" replace />
     }
 

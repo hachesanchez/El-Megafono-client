@@ -3,7 +3,6 @@
     color: white;
     position: sticky;
     top: 0;
-    z-index: 100;
 }
 
 .navbar-custom .nav-link {
@@ -15,8 +14,13 @@
     color: #EBE215;
 }
 
+.navbar-custom .nav-link.active {
+    font-weight: bold;
+    color: white;
+}
+
 .nav-logo {
-    margin-right: 60px;
+    margin-right: 10px;
     margin-left: 30px;
 }
 

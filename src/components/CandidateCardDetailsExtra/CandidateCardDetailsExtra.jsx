@@ -37,22 +37,21 @@ const CandidateCardDetailsExtra = ({ user }) => {
                 <Row >
 
                     <Col >
-                        <div className="location-icon mt-3">
-                            <img className='icon m-2 mb-3' src={locationIcon} alt="No disponible" />
+                        <div className="location-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
+                            <img className='icon m-2' src={locationIcon} alt="No disponible" />
                             {user.location}
                         </div>
-                        <div className="travel-icon mt-4" style={{ display: 'flex', alignItems: 'center' }}>
+                        <div className="travel-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
                             <img className='icon m-2' src={travelIcon} alt="No disponible" />
                             {user.travelAvailability ? (<>Me desplazo</>) : (<>No me desplazo</>)}
                         </div>
-                        <div className="salary-icon mt-3">
+                        <div className="salary-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
                             <img className='icon m-2' src={salaryIcon} alt="No disponible" />
                             {user.dailyRate}€ / jornada
 
                         </div>
                         <div className="experience-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
                             <img className='icon m-2' src={experienceIcon} alt="No disponible" />
-
                             {user.yearsOfExperience} años de experiencia
 
                         </div>

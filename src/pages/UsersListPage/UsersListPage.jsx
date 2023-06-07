@@ -1,20 +1,28 @@
 import { useContext, useEffect, useState } from 'react'
-import userService from '../../services/user.services'
 import { Container, Row, Col } from "react-bootstrap"
 import { AuthContext } from "../../contexts/auth.context"
-import './UsersListPage.css'
+import userService from '../../services/user.services'
+import { useNavigate } from "react-router-dom"
 import Loader from '../../components/Loader/Loader'
 import UsersList from '../../components/UsersList/UsersList'
+import './UsersListPage.css'
 
 
 const UsersListPage = () => {
 
     const [users, setUsers] = useState()
     const { user, role } = useContext(AuthContext)
+    const navigate = useNavigate()
+
 
     useEffect(() => {
-        loadUsers()
+        if (role !== 'ADMIN') {
+            navigate('/perfil')
+        } else {
+            loadUsers()
+        }
     }, [])
+
 
 
     const loadUsers = () => {
@@ -29,8 +37,10 @@ const UsersListPage = () => {
 
 
     return (
+
         <Container>
-            <h1>Todos los usuarios</h1>
+
+            <h1>Todas las ususarias</h1>
             <hr />
 
             <Row>
@@ -40,6 +50,7 @@ const UsersListPage = () => {
                     </Row>
                 </Col>
             </Row>
+
         </Container>
     )
 }

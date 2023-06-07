@@ -1,11 +1,11 @@
-import { Card, Container, Button, Image, Row, Col } from 'react-bootstrap';
+import { Container, Button, Image, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import userService from '../../services/user.services';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
 import { AuthContext } from './../../contexts/auth.context';
 import './CandidateCardDetails.css';
-import FavouriteCandidate from '../FavouriteCandidate/FavouriteCandidate';
 
 
 
@@ -13,6 +13,8 @@ const CandidateCardDetails = ({ user: profileUser }) => {
 
     const { id } = useParams();
     const { logout, user } = useContext(AuthContext);
+    const navigate = useNavigate()
+
 
     const handleDeleteUser = () => {
         const userId = profileUser._id;
@@ -24,6 +26,15 @@ const CandidateCardDetails = ({ user: profileUser }) => {
             .catch((error) => {
                 console.log(error);
             });
+    };
+
+    const handleEditProfile = () => {
+        if (id === user?._id || user.role === 'ADMIN') {
+            navigate(`/editar/${profileUser._id}`);
+            console.log(id)
+        } else {
+            navigate(`/perfil`);
+        }
     };
 
 
@@ -45,23 +56,16 @@ const CandidateCardDetails = ({ user: profileUser }) => {
                         <h4 className="job-category mt-1">{profileUser.jobCategory}</h4>
                         <p className="description m-3">{profileUser.description}</p>
 
-                        {/*  //TODO: NO OCULTA LOS BOTONES Y SE PUEDE ACCEDER POR PARAMS Y EDITAR LO DE OTRA PERSONA*/}
+                        {/*  //TODO: SE PUEDE ACCEDER POR PARAMS Y EDITAR LO DE OTRA PERSONA*/}
                         <Row className="align-items-center text-center mt-4">
                             <Col>
-
-                                {id === user?._id || user.role === "ADMIN" && (
+                                {(id === user?._id || user.role === 'ADMIN') && (
                                     <div className="profile-actions">
-                                        <Link className="edit-link" to={`/editar/${profileUser._id}`}>
-                                            <Button variant="outline-dark" size="sm">
-                                                Completar mi perfil
-                                            </Button>
-                                        </Link>
-                                        <Button
-                                            className="delete-profile-button"
-                                            variant="outline-danger"
-                                            size="sm"
-                                            onClick={handleDeleteUser}
-                                        > Borrar mi perfil
+                                        <Button variant="outline-dark" size="sm" onClick={handleEditProfile}>
+                                            Completar mi perfil
+                                        </Button>
+                                        <Button className="delete-profile-button" variant="outline-danger" size="sm" onClick={handleDeleteUser}>
+                                            Borrar mi perfil
                                         </Button>
                                     </div>
                                 )}

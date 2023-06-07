@@ -19,12 +19,11 @@ const ProfilePage = () => {
     const { user, logout } = useContext(AuthContext)
 
     const [profileUser, setProfileUser] = useState(null)
-    const [experiences, setExperiences] = useState()
+    const [experiences, setExperiences] = useState([])
     const [deletedExperienceId, setDeletedExperienceId] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [ownedJobs, setOwnedJobs] = useState()
     const [deletedOwnJobId, setDeletedOwnJob] = useState(null)
-    /* const [showModalProfile, setShowModalProfile] = useState(false) */
 
 
     useEffect(() => {
@@ -34,6 +33,7 @@ const ProfilePage = () => {
         handleOwnedJobs()
 
     }, [deletedExperienceId, deletedOwnJobId])
+
 
 
     const loadUser = () => {
@@ -174,7 +174,6 @@ const ProfilePage = () => {
                                 <hr />
                                 <SavedJobsPage savedJobs={profileUser?.savedJob} />
                             </Col>
-                            {/* TODO: <Col><p> 2. COMPONENTE CARD DE OFERTAS APLICADAS</p> </Col> */}
                         </Row>
                     </>
                 ) : ((null))
@@ -200,8 +199,9 @@ const ProfilePage = () => {
 export default ProfilePage
 
 
+{/* TODO: <Col><p> 2. COMPONENTE CARD DE OFERTAS APLICADAS</p> </Col> */ }
 
-
+/* const [showModalProfile, setShowModalProfile] = useState(false) */
 {/* TODO: ESTA MODAL NO FUNCIONA, NO CARGA LOS DATOS YA INTRODUCIDOS, NI DESPLIEGA OPCIONES DE PROFESIONAL */ }
 {/*   <Modal show={showModalProfile} onHide={() => setShowModalProfile(false)}>
     <Modal.Header closeButton>

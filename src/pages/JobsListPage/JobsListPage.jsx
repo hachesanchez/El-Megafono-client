@@ -15,6 +15,7 @@ const JobsListPage = () => {
     const [jobs, setJobs] = useState([])
     const [filteredJobs, setFilteredJobs] = useState([])
 
+
     useEffect(() => {
         loadJobs()
     }, [/* deleteJobId */])

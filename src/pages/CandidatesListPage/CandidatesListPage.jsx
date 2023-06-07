@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap"
 import Loader from '../../components/Loader/Loader'
 import { AuthContext } from "../../contexts/auth.context"
 import './CandidatesListPage.css'
+import CandidateSearch from '../../components/CandidateSearch/CandidateSearch'
 
 
 const CandidatesListPage = () => {
@@ -12,10 +13,16 @@ const CandidatesListPage = () => {
 
     const [users, setUsers] = useState()
     const { user, role } = useContext(AuthContext)
+    const [filteredUsers, setFilteredUsers] = useState([])
+
 
     useEffect(() => {
-        loadUsers()
-    }, [])
+        loadUsers();
+    }, []);
+
+    useEffect(() => {
+        setFilteredUsers(users);
+    }, [users]);
 
 
     const loadUsers = () => {
@@ -24,8 +31,30 @@ const CandidatesListPage = () => {
             .getCandidateUsers()
             .then(({ data }) => {
                 setUsers(data)
+                setFilteredUsers(data)
             })
             .catch(err => console.log(err))
+    }
+
+
+    const handleSearch = (filters) => {
+
+        let filteredUsers = users
+
+        if (filters.locationFilter) {
+            filteredUsers = filteredUsers.filter(user => user.location === filters.locationFilter)
+        }
+        if (filters.jobCategoryFilter) {
+            filteredUsers = filteredUsers.filter(user => user.jobCategory === filters.jobCategoryFilter)
+        }
+        if (filters.availabilityFilter) {
+            filteredUsers = filteredUsers.filter(user => user.availability === filters.availabilityFilter)
+        }
+        if (filters.travelAvailabilityFilter) {
+            filteredUsers = filteredUsers.filter(user => user.travelAvailability === filters.travelAvailabilityFilter)
+        }
+
+        setFilteredUsers(filteredUsers)
     }
 
 
@@ -33,17 +62,15 @@ const CandidatesListPage = () => {
 
         <Container>
 
-            <h1>Todos los candidatos</h1>
-            <hr />
-
             <Row>
-                <Col lg={3} md={3} xs={12}>
-                    <h1>Aquí irá un buscador con filtros</h1>
+                <Col lg={2} md={10} xs={12}>
+                    <h5 className='mb-4 mt-5 justify-content-center'>Busca un profesional</h5>
+                    <CandidateSearch onSearch={handleSearch} />
                 </Col>
 
-                <Col lg={9} md={9} xs={12} >
+                <Col className='offset-lg-1 offset-md-1 mt-5' lg={9} md={9} xs={12} >
                     <Row>
-                        {!users ? <Loader /> : <CandidatesList users={users} />}
+                        {!users ? <Loader /> : <CandidatesList users={filteredUsers} />}
                     </Row>
                 </Col>
             </Row>
