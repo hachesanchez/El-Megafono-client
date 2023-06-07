@@ -1,11 +1,11 @@
-.form-label {
-    color: black;
+/* .form-label {
+    color: rgb(0, 0, 0);
 }
-
+ */
 .signup-label {
     color: rgb(0, 0, 0);
 }
 
 .label.signup-form {
-    color: black;
+    color: rgb(255, 255, 255);
 }

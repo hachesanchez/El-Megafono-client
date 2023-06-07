@@ -30,16 +30,6 @@ const CandidateSearch = ({ onSearch }) => {
         <div>
             <Form>
 
-                <Form.Group className='mb-3' controlId="locationFilter">
-                    <Form.Label className='label'>Ubicación</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="locationFilter"
-                        value={filters.locationFilter}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-
                 <Form.Group className='mb-3' controlId="jobCategoryFilter">
                     <Form.Label className='label'>Categoría</Form.Label>
                     <Form.Select
@@ -64,6 +54,16 @@ const CandidateSearch = ({ onSearch }) => {
                     </Form.Select>
                 </Form.Group>
 
+                <Form.Group className='mb-3' controlId="locationFilter">
+                    <Form.Label className='label'>Ubicación</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="locationFilter"
+                        value={filters.locationFilter}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
                 <Form.Group className='mb-3' controlId="availabilityFilter">
                     <Form.Check
                         className='label'
@@ -86,7 +86,7 @@ const CandidateSearch = ({ onSearch }) => {
                     />
                 </Form.Group>
 
-                <Button variant="secondary mt-4" onClick={handleSearch}>
+                <Button variant="secondary mt-4 btn-sm d-grid" onClick={handleSearch}>
                     Buscar
                 </Button>
             </Form>

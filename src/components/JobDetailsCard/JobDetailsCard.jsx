@@ -92,7 +92,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
             <Card className='p-3 m-1 JobCard'>
 
                 <Row >
-                    <Col xs={{ span: 2, offset: 10 }}>
+                    <Col xs={{ span: 5, offset: 6 }} md={{ span: 3, offset: 9 }}>
                         <div className="m-2 is-filled-text"> {isFilled ? (
                             <span className="text-danger">Este proceso ya se ha cerrado</span>
                         ) : <span className="text-success">Oferta en curso</span>}
@@ -117,11 +117,11 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                                     userSaved.some(elm => elm._id === _id)
                                         ?
                                         <Button variant='link' onClick={handleDeleteJob}>
-                                            <img className='saveicon' src={saveJobImg} />
+                                            <img className='saveicon' src={saveJobImg} alt='save icon' />
                                         </Button>
                                         :
                                         <Button variant='link' onClick={handleSaveJob}>
-                                            <img className='saveicon' src={unsaveJobImg} />
+                                            <img className='saveicon' src={unsaveJobImg} alt='save icon' />
                                         </Button>
                                 )
                             }
@@ -170,7 +170,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
 
                 <hr></hr>
 
-                {owner && user && user._id === owner._id && (
+                {owner && user && (user._id === owner._id || user.role === "ADMIN") && (
                     <Row className='d-flex'>
                         {jobSavedBy
                             .filter(user => user.savedJob.includes(_id))

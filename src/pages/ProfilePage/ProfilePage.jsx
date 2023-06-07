@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from './../../contexts/auth.context'
 import { Link } from "react-router-dom"
-import { Container, Button, Row, Col, Modal, Badge } from "react-bootstrap"
+import { Container, Button, Row, Col, Modal } from "react-bootstrap"
 import userService from "../../services/user.services"
 import jobService from "../../services/job.services"
 import ProfileCardDetails from "../../components/ProfileCardDetails/ProfileCardDetails"

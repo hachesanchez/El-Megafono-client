@@ -16,7 +16,7 @@ const UsersListPage = () => {
 
 
     useEffect(() => {
-        if (role !== 'ADMIN') {
+        if (user.role !== 'ADMIN') {
             navigate('/perfil')
         } else {
             loadUsers()

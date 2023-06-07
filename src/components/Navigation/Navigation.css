@@ -3,6 +3,9 @@
     color: white;
     position: sticky;
     top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-custom .nav-link {
@@ -15,17 +18,22 @@
 }
 
 .navbar-custom .nav-link.active {
-    font-weight: bold;
+    font-weight: bolder;
     color: white;
 }
 
 .nav-logo {
-    margin-right: 10px;
-    margin-left: 30px;
+    margin-right: 30px;
+    margin-left: 45px;
 }
 
 .nav-avatar {
     object-fit: cover;
     height: 45px;
     width: 45px;
+}
+
+.custom-nav {
+    display: flex;
+    align-items: center;
 }

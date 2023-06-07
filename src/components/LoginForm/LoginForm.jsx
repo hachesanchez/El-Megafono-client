@@ -47,12 +47,12 @@ const LoginForm = () => {
             <Form onSubmit={handleSubmit} className="custom-form">
 
                 <Form.Group className='mb-3' controlId='email'>
-                    <Form.Label className='login-label'>Email</Form.Label>
+                    <Form.Label className='loginform-label'>Email</Form.Label>
                     <Form.Control type='email' value={email} onChange={handleInputChange} name='email' />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
-                    <Form.Label className='login-label'>Contraseña</Form.Label>
+                    <Form.Label className='loginform-label'>Contraseña</Form.Label>
                     <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
                 </Form.Group>
 

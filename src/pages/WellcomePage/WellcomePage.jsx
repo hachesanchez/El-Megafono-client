@@ -1,7 +1,7 @@
 import LoginCard from '../../components/LoginCard/LoginCard'
 import WellcomeCard from '../../components/WellcomeCard/WellcomeCard'
+import { Container, Row, Col } from "react-bootstrap"
 import './WellcomePage.css'
-import { Container, Row, Col, Modal } from "react-bootstrap"
 
 
 

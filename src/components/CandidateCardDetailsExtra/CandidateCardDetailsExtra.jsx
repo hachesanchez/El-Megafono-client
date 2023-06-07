@@ -14,7 +14,7 @@ import './CandidateCardDetailsExtra.css';
 
 
 const CandidateCardDetailsExtra = ({ user }) => {
-    console.log({ user })
+
     const { logout } = useContext(AuthContext);
 
 
@@ -45,7 +45,7 @@ const CandidateCardDetailsExtra = ({ user }) => {
                             <img className='icon m-2' src={travelIcon} alt="No disponible" />
                             {user.travelAvailability ? (<>Me desplazo</>) : (<>No me desplazo</>)}
                         </div>
-                        <div className="salary-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
+                        <div className="experience-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
                             <img className='icon m-2' src={salaryIcon} alt="No disponible" />
                             {user.dailyRate}€ / jornada
 
