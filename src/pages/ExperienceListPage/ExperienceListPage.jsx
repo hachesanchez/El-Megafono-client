@@ -1,14 +1,11 @@
 import { Container } from "react-bootstrap"
 import ExperiencesCard from "../../components/ExperiencesCard/ExperiencesCard"
+import sortByStartDate from "../../utils/experiences-utils";
 
 
 const ExperienceList = ({ experiences, deleteExperience }) => {
 
-    const sortedExperiences = Array.isArray(experiences)
-        ? [...experiences].sort(
-            (b, a) => new Date(a.startDate) - new Date(b.startDate))
-        : []
-
+    const sortedExperiences = sortByStartDate(experiences)
 
 
     return (

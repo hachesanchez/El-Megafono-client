@@ -15,8 +15,6 @@ import './CandidateCardDetailsExtra.css';
 
 const CandidateCardDetailsExtra = ({ user }) => {
 
-    const { logout } = useContext(AuthContext);
-
 
     return (
 
@@ -26,11 +24,7 @@ const CandidateCardDetailsExtra = ({ user }) => {
                 <Row className='mb-4' >
 
                     <div className="availability">
-                        {user.availability ? (
-                            <img className='icon m-2' src={availableIcon} alt="Disponible" />
-                        ) : (
-                            <img className='icon m-3' src={notAvailableIcon} alt="No disponible" />
-                        )}
+                        <img className='icon m-2' src={user.availability ? availableIcon : notAvailableIcon} alt="Disponible" />
                     </div>
                 </Row>
 
@@ -66,11 +60,13 @@ const CandidateCardDetailsExtra = ({ user }) => {
                         <div className="skills-icon mt-3" style={{ display: 'flex', alignItems: 'center' }}>
                             <img className='icon m-2' src={skillsIcon} alt="No disponible" />
                             <ul>
-                                {user.skills.map((skill, index) => (
-                                    skill.split(',').map((subSkill, subIndex) => (
-                                        <li key={`${index}-${subIndex}`}>{subSkill.trim()}</li>
+                                {
+                                    user.skills.map((skill, index) => (
+                                        skill.split(',').map((subSkill, subIndex) => (
+                                            <li key={`${index}-${subIndex}`}>{subSkill.trim()}</li>
+                                        ))
                                     ))
-                                ))}
+                                }
                             </ul>
                         </div>
                     </Col>

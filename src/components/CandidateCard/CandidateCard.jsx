@@ -35,11 +35,7 @@ const CandidateCard = ({ username, avatar, location, availability, jobCategory, 
                 <Row>
                     <Col className='p-1' xs={{ span: 3, offset: 9 }}>
                         <div className="availability-icon justify-content-end">
-                            {availability ? (
-                                <img className='icon m-3' src={availableIcon} alt="Disponible" />
-                            ) : (
-                                <img className='icon m-3' src={notAvailableIcon} alt="No disponible" />
-                            )}
+                            <img className='icon m-3' src={availability ? availableIcon : notAvailableIcon} alt="Disponible" />
                         </div>
                     </Col>
                 </Row>

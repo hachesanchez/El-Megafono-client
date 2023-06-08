@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import userService from "../../services/user.services";
 import './SavedJobCard.css'

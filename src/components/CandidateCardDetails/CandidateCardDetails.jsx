@@ -17,10 +17,12 @@ const CandidateCardDetails = ({ user: profileUser }) => {
 
 
     const handleDeleteUser = () => {
-        const userId = profileUser._id;
+
+        const { _id: userId } = profileUser
+
         userService
             .deleteProfile(userId)
-            .then((response) => {
+            .then(() => {
                 logout();
             })
             .catch((error) => {
@@ -31,7 +33,6 @@ const CandidateCardDetails = ({ user: profileUser }) => {
     const handleEditProfile = () => {
         if (id === user?._id || user.role === 'ADMIN') {
             navigate(`/editar/${profileUser._id}`);
-            console.log(id)
         } else {
             navigate(`/perfil`);
         }
@@ -56,7 +57,6 @@ const CandidateCardDetails = ({ user: profileUser }) => {
                         <h4 className="job-category mt-1">{profileUser.jobCategory}</h4>
                         <p className="description m-3">{profileUser.description}</p>
 
-                        {/*  //TODO: SE PUEDE ACCEDER POR PARAMS Y EDITAR LO DE OTRA PERSONA*/}
                         <Row className="align-items-center text-center mt-4">
                             <Col>
                                 {(id === user?._id || user.role === 'ADMIN') && (

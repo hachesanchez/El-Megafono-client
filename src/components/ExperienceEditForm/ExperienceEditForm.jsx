@@ -1,14 +1,11 @@
-import { Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Form, Button, Col, Row } from "react-bootstrap";
-import experiencesService from "../../services/experiences.services";
+import { Container } from "react-bootstrap"
+import { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import { Form, Button } from "react-bootstrap"
+import experiencesService from "../../services/experiences.services"
 
-
-const ExperienceEditForm = () => {
-
-
-    let { id: experienceId } = useParams();
+const ExperienceEditForm = ({ onExperienceTitleChange }) => {
+    let { id: experienceId } = useParams()
 
     const [experienceData, setExperienceData] = useState({
         title: "",
@@ -16,110 +13,103 @@ const ExperienceEditForm = () => {
         startDate: "",
         endDate: "",
         description: "",
-    });
+    })
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     useEffect(() => {
-        loadExperience();
-    }, [experienceId]);
+        loadExperience()
+    }, [experienceId])
 
     const loadExperience = () => {
         experiencesService
             .getOneExperience(experienceId)
             .then(({ data }) => {
-                setExperienceData(data);
+                setExperienceData(data)
+                onExperienceTitleChange(data.title)
             })
             .catch((error) => {
-                console.log(error);
-            });
-    };
+                console.log(error)
+            })
+    }
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-
-        value && setExperienceData({ ...experienceData, [name]: value });
-    };
+        const { name, value } = e.target
+        value && setExperienceData({ ...experienceData, [name]: value })
+    }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         experiencesService
             .editExperience(experienceId, experienceData)
             .then((response) => {
-                navigate("/perfil");
+                navigate("/perfil")
             })
             .catch((error) => {
-                console.log(error);
-            });
-    };
+                console.log(error)
+            })
+    }
 
-    const { title, organization, startDate, endDate, description } = experienceData;
+    const { title, organization, startDate, endDate, description } = experienceData
 
-    const formattedStartDate = new Date(startDate).toLocaleDateString("es-ES");
-    const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES");
+    const formattedStartDate = new Date(startDate).toLocaleDateString("es-ES")
+    const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES")
 
     return (
+        <Form onSubmit={handleSubmit} className="edit-experience-form">
+            <Form.Group className="mb-3" controlId="title">
+                <Form.Label className="signup-label">Puesto</Form.Label>
+                <Form.Control
+                    type="text"
+                    defaultValue={title}
+                    onChange={handleInputChange}
+                    name="title"
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="organization">
+                <Form.Label className="signup-label">Organización o empresa</Form.Label>
+                <Form.Control
+                    type="text"
+                    defaultValue={organization}
+                    onChange={handleInputChange}
+                    name="organization"
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="startDate">
+                <Form.Label className="signup-label">Fecha de inicio</Form.Label>
+                <Form.Control
+                    type="text"
+                    /* defaultValue={formattedStartDate} */
+                    onChange={handleInputChange}
+                    name="startDate"
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="endDate">
+                <Form.Label className="signup-label">Fecha fin</Form.Label>
+                <Form.Control
+                    type="text"
+                    /* defaultValue={formattedEndDate} */
+                    onChange={handleInputChange}
+                    name="endDate"
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="description">
+                <Form.Label className="signup-label">Descripción</Form.Label>
+                <Form.Control
+                    type="text"
+                    defaultValue={description}
+                    onChange={handleInputChange}
+                    name="description"
+                />
+            </Form.Group>
+            <div className="d-grid">
+                <Button variant="dark mt-4 mb-4" type="submit">
+                    Guardar cambios
+                </Button>
+            </div>
+        </Form>
+    )
+}
 
-        <Container>
-
-            <h1 className="estas-editando" >Estás editando en tu CV:</h1>
-            <h4 className="mb-5 mx-5"> <em>{title}</em></h4>
-
-            <Form onSubmit={handleSubmit} className="edit-experience-form">
-                <Form.Group className="mb-3" controlId="title">
-                    <Form.Label className="signup-label">Puesto</Form.Label>
-                    <Form.Control
-                        type="text"
-                        defaultValue={title}
-                        onChange={handleInputChange}
-                        name="title"
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="organization">
-                    <Form.Label className="signup-label">Organización o empresa</Form.Label>
-                    <Form.Control
-                        type="text"
-                        defaultValue={organization}
-                        onChange={handleInputChange}
-                        name="organization"
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="startDate">
-                    <Form.Label className="signup-label">Fecha de inicio</Form.Label>
-                    <Form.Control
-                        type="text"
-                        /* defaultValue={formattedStartDate} */
-                        onChange={handleInputChange}
-                        name="startDate"
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="endDate">
-                    <Form.Label className="signup-label">Fecha fin</Form.Label>
-                    <Form.Control
-                        type="text"
-                        /* defaultValue={formattedEndDate} */
-                        onChange={handleInputChange}
-                        name="endDate"
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="description">
-                    <Form.Label className="signup-label">Descripción</Form.Label>
-                    <Form.Control
-                        type="text"
-                        defaultValue={description}
-                        onChange={handleInputChange}
-                        name="description"
-                    />
-                </Form.Group>
-                <div className="d-grid">
-                    <Button variant="dark mt-4 mb-4" type="submit">
-                        Guardar cambios
-                    </Button>
-                </div>
-            </Form>
-        </Container>
-    );
-};
-
-export default ExperienceEditForm;
+export default ExperienceEditForm

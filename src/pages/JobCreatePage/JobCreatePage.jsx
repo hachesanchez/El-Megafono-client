@@ -3,12 +3,13 @@ import { Container, Col } from "react-bootstrap"
 import './JobCreatePage.css'
 
 
-//TODO: SECURIZAR EL FORMULARIO ROLE === ORGANIZACIÓN o ADMIN
 const JobCreatePage = () => {
 
     return (
+
         <Container>
-            <Col className='offset-2 p-1' md={8}>
+            <Col className='offset-2 p-1' md={8} >
+                <h2 className="mb-5">Crea una oferta de trabajo</h2>
                 <JobCreateForm />
             </Col>
         </Container>

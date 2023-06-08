@@ -1,15 +1,18 @@
 import ExperienceCreateForm from '../../components/ExperienceCreateForm/ExperienceCreateForm'
-import { Container } from "react-bootstrap"
+import { Container, Col } from "react-bootstrap"
 import './ExperienceCreatePage.css'
 
 
-//TODO: SECURIZAR EL FORMULARIO ROLE === PROFESIONAL o ADMIN
 
 const ExperienceCreatePage = () => {
 
     return (
+
         <Container>
-            <ExperienceCreateForm />
+            <Col>
+                <h1 className="estas-editando" >Crea una nueva experiencia para tu CV</h1>
+                <ExperienceCreateForm />
+            </Col>
         </Container>
     )
 }

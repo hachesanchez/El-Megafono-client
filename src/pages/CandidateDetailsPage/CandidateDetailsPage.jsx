@@ -28,20 +28,16 @@ const CandidateDetailsPage = () => {
             .getProfile(id)
             .then(({ data }) => {
                 setUser(data)
-
-                experiencesService
-                    .getAllExperiences()
-                    .then(({ data }) => {
-                        const candidateExperiences = data.filter((experience) => experience.owner?._id === id)
-                        setExperiences(candidateExperiences);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                // TODO: CREAR SERVICIO getUserExperiences(user_id)
+                return experiencesService.getAllExperiences()
             })
-            .catch((err) => {
-                console.log(err)
+            .then(({ data }) => {
+                const candidateExperiences = data.filter((experience) => experience.owner?._id === id)
+                setExperiences(candidateExperiences);
             })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (

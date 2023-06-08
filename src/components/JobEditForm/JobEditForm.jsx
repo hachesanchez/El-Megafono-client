@@ -2,10 +2,11 @@ import { Form, Button, Col, Row, Container } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import jobService from "../../services/job.services"
+import { JOB_CATEGORIES_ARRAY } from '../../consts/jobs-consts'
 import './JobEditForm.css'
 
 
-const JobEditForm = () => {
+const JobEditForm = ({ onExperienceTitleChange }) => {
 
     let { id: jobId } = useParams()
 
@@ -44,6 +45,7 @@ const JobEditForm = () => {
             .getOneJob(jobId)
             .then(({ data }) => {
                 setJobData(data)
+                onExperienceTitleChange(data.title)
             })
             .catch((error) => {
                 console.log(error)
@@ -64,7 +66,6 @@ const JobEditForm = () => {
             .editJob(jobId, jobData)
             .then((response) => {
                 navigate(`/empleo/${jobId}`)
-                /* navigate(`/empleos`) */
             })
             .catch((error) => {
                 console.log(error)
@@ -102,131 +103,97 @@ const JobEditForm = () => {
 
     return (
 
-        <Container>
-            <h1 className="estas-editando" >Estás editando el puesto:</h1>
-            <h4 className="mb-5 mx-5"> <em>{jobData.title}</em></h4>
+        <Form onSubmit={handleSubmit} className="edit-experience-form">
 
-            <Form onSubmit={handleSubmit} className="edit-experience-form">
+            <Form.Group className="mb-3" controlId="title">
+                <Form.Label className="signup-label">Puesto</Form.Label>
+                <Form.Control
+                    type="text"
+                    defaultValue={title}
+                    onChange={handleInputChange}
+                    name="title"
+                />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="title">
-                    <Form.Label className="signup-label">Puesto</Form.Label>
-                    <Form.Control
-                        type="text"
-                        defaultValue={title}
-                        onChange={handleInputChange}
-                        name="title"
-                    />
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="description">
+                <Form.Label className="signup-label">Descripción del puesto</Form.Label>
+                <Form.Control
+                    type="text"
+                    defaultValue={description}
+                    onChange={handleInputChange}
+                    name="description"
+                />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="description">
-                    <Form.Label className="signup-label">Descripción del puesto</Form.Label>
-                    <Form.Control
-                        type="text"
-                        defaultValue={description}
-                        onChange={handleInputChange}
-                        name="description"
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label className="mb-3">Categoría laboral</Form.Label>
-                    <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
-                        {/* TODO OPCIONAL: CREAR COLECCIÓN DE CATEGORIAS */}
-                        <option value="">Escoge una opción...</option>
-                        <option value="Administración y finanzas">Administración y finanzas</option>
-                        <option value="Comunicación y Marketing">Comunicación y Marketing</option>
-                        <option value="Cooperación">Cooperación</option>
-                        <option value="Dirección y coordinación">Dirección y coordinación</option>
-                        <option value="Gestión de proyectos">Gestión de proyectos</option>
-                        <option value="Legal">Legal</option>
-                        <option value="Diseño">Diseño</option>
-                        <option value="Arquitectura">Arquitectura</option>
-                        <option value="Ciencias de la salud">Ciencias de la salud</option>
-                        <option value="Recursos humanos">Recursos humanos</option>
-                        <option value="Imagen y sonido">Imagen y sonido</option>
-                        <option value="Tecnologías de la información (IT)">Tecnologías de la información (IT)</option>
-                        <option value="Traducción e interpretación">Traducción e interpretación</option>
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="yearsOfExperience">
-                    <Form.Label className="job-label">Años de experiencia requeridos</Form.Label>
-                    <Form.Control type="text" value={yearsOfExperience} onChange={handleInputChange} name="yearsOfExperience" />
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="grossSalary">
-                    <Form.Label className="job-label">Salario bruto anual</Form.Label>
-                    <Form.Control type="text" value={grossSalary} onChange={handleInputChange} name="grossSalary" />
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="location">
-                    <Form.Label className="job-label">Ubicaión del puesto de trabajo</Form.Label>
-                    <Form.Control type="text" value={location} onChange={handleInputChange} name="location" />
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="travelAvailability">
-                    <Form.Label className="job-label">Disponibilidad para viajar</Form.Label>
-                    <Form.Select value={travelAvailability} onChange={handleInputChange} name="travelAvailability">
-                        <option value={true}>Sí</option>
-                        <option value={false}>No</option>
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="remoteJob">
-                    <Form.Label className="job-label">Posibilidad de teletrabajar</Form.Label>
-                    <Form.Select value={remoteJob} onChange={handleInputChange} name="remoteJob">
-                        <option value={true}>Sí</option>
-                        <option value={false}>No</option>
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="startDate">
-                    <Form.Label className="job-label">Fecha de inicio</Form.Label>
-                    <Form.Control type="text" value={startDate} onChange={handleInputChange} name="startDate" />
-                </Form.Group>
-
-                <Form.Group className="mb-3 mt-3" controlId="contract">
-                    <Form.Label className="job-label">Tipo de contrato</Form.Label>
-                    <Form.Select value={contract} onChange={handleInputChange} name="contract">
-                        <option value="">Escoge una opción</option>
-                        <option value="Indefinido">Indefinido</option>
-                        <option value="Por obra y servicio">Por obra y servicio</option>
-                        <option value="Autónoma/o">Autónoma/o</option>
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group controlid="languages">
+            <Form.Group className="mb-3">
+                <Form.Label className="mb-3">Categoría laboral</Form.Label>
+                <Form.Select controlid="jobCategory" value={jobCategory} onChange={handleInputChange} name="jobCategory" >
+                    <option value="">Escoge una opción...</option>
                     {
-                        languages.length ? languages.map((elm, idx) => {
-                            return (
-                                <Row key={idx}>
-                                    <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
-                                        <Form.Label >Idioma</Form.Label>
-                                        <Form.Control type="languages.name" value={elm.name} onChange={(e) => handleLanguagesChange(e, idx)} name="name" />
-                                    </Form.Group>
-                                    <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
-                                        <Form.Label >Nivel</Form.Label>
-                                        <Form.Select controlid="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
-                                            <option value="">Escoge una opción...</option>
-                                            <option value="Principiante">Principiante</option>
-                                            <option value="Básico profesional">Básico profesional</option>
-                                            <option value="Avanzado">Avanzado</option>
-                                            <option value="Bilingüe o nativo">Bilingüe o nativo</option>
-                                        </Form.Select>
-                                    </Form.Group>
-                                </Row>
-                            )
-                        })
-                            :
+                        JOB_CATEGORIES_ARRAY.map(elm => <option key={elm} value={elm}>{elm}</option>)
+                    }
+                </Form.Select>
+            </Form.Group>
 
-                            <Row>
+            <Form.Group className="mb-3 mt-3" controlId="yearsOfExperience">
+                <Form.Label className="job-label">Años de experiencia requeridos</Form.Label>
+                <Form.Control type="text" value={yearsOfExperience} onChange={handleInputChange} name="yearsOfExperience" />
+            </Form.Group>
+
+            <Form.Group className="mb-3 mt-3" controlId="grossSalary">
+                <Form.Label className="job-label">Salario bruto anual</Form.Label>
+                <Form.Control type="text" value={grossSalary} onChange={handleInputChange} name="grossSalary" />
+            </Form.Group>
+
+            <Form.Group className="mb-3 mt-3" controlId="location">
+                <Form.Label className="job-label">Ubicación del puesto de trabajo</Form.Label>
+                <Form.Control type="text" value={location} onChange={handleInputChange} name="location" />
+            </Form.Group>
+
+            <Form.Group className="mb-3 mt-3" controlId="travelAvailability">
+                <Form.Label className="job-label">Disponibilidad para viajar</Form.Label>
+                <Form.Select value={travelAvailability} onChange={handleInputChange} name="travelAvailability">
+                    <option value={true}>Sí</option>
+                    <option value={false}>No</option>
+                </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3 mt-3" controlId="remoteJob">
+                <Form.Label className="job-label">Posibilidad de teletrabajar</Form.Label>
+                <Form.Select value={remoteJob} onChange={handleInputChange} name="remoteJob">
+                    <option value={true}>Sí</option>
+                    <option value={false}>No</option>
+                </Form.Select>
+            </Form.Group>
+
+            {/* //TODO: NO CAMBIA LA FECHA. Formato */}
+            <Form.Group className="mb-3 mt-3" controlId="startDate">
+                <Form.Label className="job-label">Fecha de inicio</Form.Label>
+                <Form.Control type="text" value={startDate} onChange={handleInputChange} name="startDate" />
+            </Form.Group>
+
+            <Form.Group className="mb-3 mt-3" controlId="contract">
+                <Form.Label className="job-label">Tipo de contrato</Form.Label>
+                <Form.Select value={contract} onChange={handleInputChange} name="contract">
+                    <option value="">Escoge una opción</option>
+                    <option value="Indefinido">Indefinido</option>
+                    <option value="Por obra y servicio">Por obra y servicio</option>
+                    <option value="Autónoma/o">Autónoma/o</option>
+                </Form.Select>
+            </Form.Group>
+
+            <Form.Group controlid="languages">
+                {
+                    languages.length ? languages.map((elm, idx) => {
+                        return (
+                            <Row key={idx}>
                                 <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
                                     <Form.Label >Idioma</Form.Label>
-                                    <Form.Control type="languages.name" onChange={(e) => handleLanguagesChange(e, 0)} name="name" />
+                                    <Form.Control type="languages.name" value={elm.name} onChange={(e) => handleLanguagesChange(e, idx)} name="name" />
                                 </Form.Group>
                                 <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
                                     <Form.Label >Nivel</Form.Label>
-                                    <Form.Select controlid="languages.value" onChange={(e) => handleLanguagesChange(e, 0)} name="level" >
+                                    <Form.Select controlid="languages.value" value={elm.level} onChange={(e) => handleLanguagesChange(e, idx)} name="level" >
                                         <option value="">Escoge una opción...</option>
                                         <option value="Principiante">Principiante</option>
                                         <option value="Básico profesional">Básico profesional</option>
@@ -235,23 +202,42 @@ const JobEditForm = () => {
                                     </Form.Select>
                                 </Form.Group>
                             </Row>
-                    }
-                </Form.Group>
+                        )
+                    })
+                        :
 
-                <Form.Group className="mb-3 mt-3" controlId="isFilled">
-                    <Form.Label className="job-label">¿Se ha cerrado este proceso?</Form.Label>
-                    <Form.Select value={isFilled} onChange={handleInputChange} name="isFilled">
-                        <option value={true}>Sí</option>
-                        <option value={false}>No</option>
-                    </Form.Select>
-                </Form.Group>
+                        <Row>
+                            <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.name">
+                                <Form.Label >Idioma</Form.Label>
+                                <Form.Control type="languages.name" onChange={(e) => handleLanguagesChange(e, 0)} name="name" />
+                            </Form.Group>
+                            <Form.Group as={Col} className="mb-3 mt-3" controlid="languages.value">
+                                <Form.Label >Nivel</Form.Label>
+                                <Form.Select controlid="languages.value" onChange={(e) => handleLanguagesChange(e, 0)} name="level" >
+                                    <option value="">Escoge una opción...</option>
+                                    <option value="Principiante">Principiante</option>
+                                    <option value="Básico profesional">Básico profesional</option>
+                                    <option value="Avanzado">Avanzado</option>
+                                    <option value="Bilingüe o nativo">Bilingüe o nativo</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Row>
+                }
+            </Form.Group>
 
-                <div className="d-grid">
-                    <Button variant="dark mt-4" type="submit">Guardar edición</Button>
-                </div>
+            <Form.Group className="mb-3 mt-3" controlId="isFilled">
+                <Form.Label className="job-label">¿Se ha cerrado este proceso?</Form.Label>
+                <Form.Select value={isFilled} onChange={handleInputChange} name="isFilled">
+                    <option value={true}>Sí</option>
+                    <option value={false}>No</option>
+                </Form.Select>
+            </Form.Group>
 
-            </Form>
-        </Container>
+            <div className="d-grid">
+                <Button variant="dark mt-4" type="submit">Guardar edición</Button>
+            </div>
+
+        </Form>
     )
 }
 

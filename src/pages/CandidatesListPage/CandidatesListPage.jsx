@@ -12,7 +12,6 @@ const CandidatesListPage = () => {
 
 
     const [users, setUsers] = useState()
-    const { user, role } = useContext(AuthContext)
     const [filteredUsers, setFilteredUsers] = useState([])
 
 
@@ -38,6 +37,8 @@ const CandidatesListPage = () => {
 
 
     const handleSearch = (filters) => {
+
+        // TODO: MOVER FILTROS A API
 
         let filteredUsers = users
 

@@ -24,23 +24,31 @@ const AppRoutes = () => {
 
         <Routes>
 
-            {/*  <Route path="/registro" element={<SignUpPage />} /> */}
             <Route path="/acceder" element={<LoginPage />} />
             <Route path="/" element={<WellcomePage />} />
             <Route path="/contacta" element={<ContactPage />} />
 
-            <Route element={<PrivateRoute />}>
+            <Route element={<PrivateRoute admittedRoles={['ADMIN', 'PROFESIONAL', 'ORGANIZACIÓN']} />}>
                 <Route path="/inicio" element={<HomePage />} />
                 <Route path="/profesionales" element={<CandidatesListPage />} />
                 <Route path="/profesionales/:id" element={<CandidateDetailsPage />} />
                 <Route path="/perfil" element={<ProfilePage />} />
                 <Route path="/editar/:id" element={<ProfileEditPage />} />
-                <Route path="/empleos" element={<JobsListPage />} />
                 <Route path="/empleo/:id" element={<JobDetailsPage />} />
-                <Route path="/crear-oferta" element={<JobCreatePage />} />
-                <Route path="/empleo/:id/editar" element={<JobEditPage />} />
+            </Route>
+
+            <Route element={<PrivateRoute admittedRoles={['ADMIN', 'PROFESIONAL']} />}>
+                <Route path="/empleos" element={<JobsListPage />} />
                 <Route path="/crear-experiencia" element={<ExperienceCreatePage />} />
                 <Route path="/experiencia/:id/editar" element={<ExperienceEditPage />} />
+            </Route>
+
+            <Route element={<PrivateRoute admittedRoles={['ADMIN', 'ORGANIZACIÓN']} />}>
+                <Route path="/crear-oferta" element={<JobCreatePage />} />
+                <Route path="/empleo/:id/editar" element={<JobEditPage />} />
+            </Route>
+
+            <Route element={<PrivateRoute admittedRoles={['ADMIN']} />}>
                 <Route path="/usuarios" element={<UsersListPage />} />
             </Route>
 

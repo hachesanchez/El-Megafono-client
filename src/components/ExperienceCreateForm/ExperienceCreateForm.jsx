@@ -13,7 +13,6 @@ const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
         description: ''
     })
 
-    const navigate = useNavigate()
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -25,7 +24,7 @@ const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
 
         experiencesService
             .saveExperience(experienceData)
-            .then(({ data }) => {
+            .then(() => {
                 closeModal()
                 updateExperiences()
             })

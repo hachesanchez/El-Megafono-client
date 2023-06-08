@@ -1,10 +1,10 @@
-import { Container } from "react-bootstrap"
-import './ContactPage.css'
 import ContactCard from "../../components/ContactCard/ContacCard"
+import './ContactPage.css'
 
 const ContactPage = () => {
 
     return (
+
         <div className='contact-page'>
             <ContactCard />
         </div>

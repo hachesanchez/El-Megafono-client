@@ -62,6 +62,7 @@ const ProfilePage = () => {
 
 
     const updateExperiences = () => {
+        // TODO: enganchar a nuevo servicio getuserexperiences
         experiencesService
             .getAllExperiences()
             .then(({ data }) => {
@@ -126,7 +127,7 @@ const ProfilePage = () => {
                     <div className="d-grid gap-1 align-items-center">
 
                         {
-                            user && (user.role === 'PROFESIONAL' || user.role === 'ADMIN') &&
+                            user.role === 'PROFESIONAL' || user.role === 'ADMIN' &&
                             <>
                                 <Link className="w-100" to={`/profesionales/${user?._id}`}>
                                     <Button variant="outline-dark" className="w-100" size="sm" >Ver mi perfil público</Button>
@@ -148,7 +149,7 @@ const ProfilePage = () => {
             </Row>
 
             {
-                user && (user.role === 'ORGANIZACIÓN' || user.role === 'ADMIN') ? (
+                user.role === 'ORGANIZACIÓN' || user.role === 'ADMIN' ? (
                     <>
                         <Row md={9} >
                             <h4 className="mb-4 mx-4 ofertas-tilte">Mis ofertas publicadas</h4>
@@ -162,7 +163,7 @@ const ProfilePage = () => {
             }
 
             {
-                user && (user.role === 'PROFESIONAL' || user.role === 'ADMIN') ? (
+                user.role === 'PROFESIONAL' || user.role === 'ADMIN' ? (
                     <>
                         <Row>
                             <Col xs={6}>
@@ -182,7 +183,7 @@ const ProfilePage = () => {
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Nueva experiencia</Modal.Title>
+                    <Modal.Title>Nueva experiencia para tu CV</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ExperienceCreateForm closeModal={() => setShowModal(false)} updateExperiences={updateExperiences} />

@@ -76,6 +76,8 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
             });
     }
 
+
+    // DESACOPLAR EN UTILS
     const formatStartDate = () => {
         const formattedDate = new Date(startDate)
         const month = formattedDate.getMonth() + 1
@@ -83,7 +85,6 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
         setFormattedStartDate(`${month}/${year}`)
     }
 
-    console.log(languages)
 
     return (
 
@@ -170,7 +171,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
 
                 <hr></hr>
 
-                {owner && user && (user._id === owner._id || user.role === "ADMIN") && (
+                {owner && (user._id === owner._id || user.role === "ADMIN") && (
                     <Row className='d-flex'>
                         {jobSavedBy
                             .filter(user => user.savedJob.includes(_id))

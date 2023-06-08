@@ -2,25 +2,21 @@ import { useContext, useEffect, useState } from 'react'
 import { Container, Row, Col } from "react-bootstrap"
 import { AuthContext } from "../../contexts/auth.context"
 import userService from '../../services/user.services'
-import { useNavigate } from "react-router-dom"
 import Loader from '../../components/Loader/Loader'
 import UsersList from '../../components/UsersList/UsersList'
 import './UsersListPage.css'
 
 
-const UsersListPage = () => {
+const UsersListPage = (admittedRoles) => {
 
     const [users, setUsers] = useState()
     const { user, role } = useContext(AuthContext)
-    const navigate = useNavigate()
 
 
     useEffect(() => {
-        if (user.role !== 'ADMIN') {
-            navigate('/perfil')
-        } else {
-            loadUsers()
-        }
+
+        loadUsers()
+
     }, [])
 
 

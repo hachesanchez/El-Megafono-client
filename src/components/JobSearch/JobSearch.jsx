@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form } from "react-bootstrap"
 
 
-const JobSearch = ({ filterJobByLocation, filterAllJobs }) => {
+const JobSearch = ({ filterJobByLocation }) => {
 
     const [locationQuery, setLocationQuery] = useState('')
 
@@ -12,7 +12,9 @@ const JobSearch = ({ filterJobByLocation, filterAllJobs }) => {
         filterJobByLocation(inputValue)
     }
 
+
     return (
+
         <Form>
             <Form.Group className="mb-3" controlId="jobsSearch">
                 <Form.Control type="text"

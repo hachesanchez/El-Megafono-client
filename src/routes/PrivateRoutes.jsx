@@ -3,15 +3,14 @@ import { AuthContext } from "./../contexts/auth.context"
 import { Navigate, Outlet } from 'react-router-dom'
 import Loader from "../components/Loader/Loader"
 
-const PrivateRoute = () => {
-
+const PrivateRoute = ({ admittedRoles }) => {
     const { user, isLoading } = useContext(AuthContext)
 
     if (isLoading) {
         return <Loader />
     }
 
-    if (!user) {
+    if (!user || !admittedRoles.includes(user.role)) {
         return <Navigate to="/acceder" replace />
     }
 
