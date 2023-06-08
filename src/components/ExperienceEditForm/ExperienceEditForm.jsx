@@ -1,11 +1,15 @@
-import { Container } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 import experiencesService from "../../services/experiences.services"
+import FormError from "../FormError/FormError"
+
 
 const ExperienceEditForm = ({ onExperienceTitleChange }) => {
+
     let { id: experienceId } = useParams()
+
+    const [errors, setErrors] = useState([])
 
     const [experienceData, setExperienceData] = useState({
         title: "",
@@ -46,8 +50,9 @@ const ExperienceEditForm = ({ onExperienceTitleChange }) => {
             .then((response) => {
                 navigate("/perfil")
             })
-            .catch((error) => {
-                console.log(error)
+            .catch(err => {
+                console.log(err.response.data)
+                setErrors(err.response.data.errorMessages)
             })
     }
 
@@ -56,7 +61,9 @@ const ExperienceEditForm = ({ onExperienceTitleChange }) => {
     const formattedStartDate = new Date(startDate).toLocaleDateString("es-ES")
     const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES")
 
+
     return (
+
         <Form onSubmit={handleSubmit} className="edit-experience-form">
             <Form.Group className="mb-3" controlId="title">
                 <Form.Label className="signup-label">Puesto</Form.Label>
@@ -103,6 +110,9 @@ const ExperienceEditForm = ({ onExperienceTitleChange }) => {
                     name="description"
                 />
             </Form.Group>
+
+            {errors.length > 0 && <FormError>{errors.map((elm, i) => <p key={i}>{elm}</p>)}</FormError>}
+
             <div className="d-grid">
                 <Button variant="dark mt-4 mb-4" type="submit">
                     Guardar cambios

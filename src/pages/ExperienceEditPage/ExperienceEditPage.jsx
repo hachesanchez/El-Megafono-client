@@ -20,7 +20,7 @@ const ExperienceEditPage = () => {
 
             <Col className='offset-2 p-1' md={8}>
                 <h1 className="estas-editando" >Estás editando en tu CV:</h1>
-                <h4 className="mb-5 mx-5"> <em>{experienceTitle}</em></h4>
+                <h4 className="mb-5 mx-5"> {experienceTitle}</h4>
                 <ExperienceEditForm onExperienceTitleChange={handleExperienceTitleChange} />
             </Col>
 

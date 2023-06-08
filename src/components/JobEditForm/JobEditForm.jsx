@@ -1,4 +1,4 @@
-import { Form, Button, Col, Row, Container } from "react-bootstrap"
+import { Form, Button, Col, Row } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import jobService from "../../services/job.services"
@@ -6,7 +6,7 @@ import { JOB_CATEGORIES_ARRAY } from '../../consts/jobs-consts'
 import './JobEditForm.css'
 
 
-const JobEditForm = ({ onExperienceTitleChange }) => {
+const JobEditForm = ({ onJobTitleChange }) => {
 
     let { id: jobId } = useParams()
 
@@ -45,7 +45,7 @@ const JobEditForm = ({ onExperienceTitleChange }) => {
             .getOneJob(jobId)
             .then(({ data }) => {
                 setJobData(data)
-                onExperienceTitleChange(data.title)
+                onJobTitleChange(data.title)
             })
             .catch((error) => {
                 console.log(error)

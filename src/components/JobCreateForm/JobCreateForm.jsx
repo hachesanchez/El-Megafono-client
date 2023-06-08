@@ -3,11 +3,14 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import jobService from "../../services/job.services"
 import { JOB_CATEGORIES_ARRAY } from '../../consts/jobs-consts'
+import FormError from "../FormError/FormError"
 import './JobCreateForm.css'
 
 
 
 const JobCreateForm = () => {
+
+    const [errors, setErrors] = useState([])
 
     const [jobData, setJobData] = useState({
 
@@ -46,7 +49,8 @@ const JobCreateForm = () => {
         jobService
             .saveJob(jobData)
             .then(() => navigate('/perfil'))
-            .catch(err => console.log(err))
+            .catch(err =>
+                setErrors(err.response.data.errorMessages))
     }
 
     const handleLanguagesChange = (e, idx) => {
@@ -190,6 +194,9 @@ const JobCreateForm = () => {
                         </Row>
                 }
             </Form.Group>
+
+            {errors.length > 0 && <FormError>{errors.map((elm, i) => <p key={i}>{elm}</p>)}</FormError>}
+
             <div className="d-grid">
                 <Button variant="dark mt-4" type="submit">Guarda Oferta</Button>
             </div>

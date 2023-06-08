@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { Form, Button, Col, Row } from "react-bootstrap"
 import experiencesService from "../../services/experiences.services"
+import FormError from "../FormError/FormError"
 
 const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
 
+    const [errors, setErrors] = useState([])
     const [experienceData, setExperienceData] = useState({
         title: '',
         organization: '',
@@ -19,6 +20,7 @@ const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
         setExperienceData({ ...experienceData, [name]: value })
     }
 
+
     const handleSubmit = e => {
         e.preventDefault()
 
@@ -28,7 +30,8 @@ const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
                 closeModal()
                 updateExperiences()
             })
-            .catch(err => console.log(err))
+            .catch(err =>
+                setErrors(err.response.data.errorMessages))
     }
 
     const { title, organization, startDate, endDate, description } = experienceData
@@ -65,6 +68,7 @@ const ExperienceCreateForm = ({ closeModal, updateExperiences }) => {
                 <Form.Control type="text" value={description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
+            {errors.length > 0 && <FormError>{errors.map((elm, i) => <p key={i}>{elm}</p>)}</FormError>}
 
             <div className="d-grid">
                 <Button variant="dark mt-4" type="submit">Añade experiencia</Button>

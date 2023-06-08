@@ -8,6 +8,8 @@ import unsaveJobImg from '../../../src/assets/images/save-icon1.png'
 import saveJobImg from '../../../src/assets/images/save-icon2.png'
 import Loader from '../../components/Loader/Loader'
 import userService from '../../services/user.services';
+import { formatDate } from '../../utils/date-utils'
+
 
 
 const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract, owner, yearsOfExperience, remoteJob, startDate, location, languages, isFilled, _id, loadJob }) => {
@@ -17,14 +19,13 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
     const [showModal, setShowModal] = useState(false)
     const [userSaved, setUserSaved] = useState([])
     const [jobSavedBy, setJobSavedBy] = useState([])
-    const [formattedStartDate, setFormattedStartDate] = useState('');
 
 
 
     useEffect(() => {
         getProfile()
         getAllProfiles()
-        formatStartDate()
+
     }, [])
 
 
@@ -76,14 +77,6 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
             });
     }
 
-
-    // DESACOPLAR EN UTILS
-    const formatStartDate = () => {
-        const formattedDate = new Date(startDate)
-        const month = formattedDate.getMonth() + 1
-        const year = formattedDate.getFullYear().toString()
-        setFormattedStartDate(`${month}/${year}`)
-    }
 
 
     return (
@@ -138,7 +131,7 @@ const JobDetailsCard = ({ title, jobCategory, description, grossSalary, contract
                                     <li><strong className='prop-name'>Experiencia requerida:</strong> {yearsOfExperience} año(s)</li>
                                     <li><strong className='prop-name'>Lugar del puesto de trabajo:</strong> {location}</li>
                                     <li><strong className='prop-name'>Posibilidad de teletrabajar:</strong>  {remoteJob ? (<>Sí</>) : (<>No</>)}   </li>
-                                    <li><strong className='prop-name'>Fecha de incorporación </strong> {formattedStartDate}</li>
+                                    <li><strong className='prop-name'>Fecha de incorporación </strong>  {formatDate(startDate)} </li>
 
                                     {/* TODO: NO LLEGAN LOS IDIOMAS */}
                                     {languages.length === 0 ? (

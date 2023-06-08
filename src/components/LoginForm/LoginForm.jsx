@@ -4,11 +4,12 @@ import { useContext, useState } from "react"
 import authService from './../../services/auth.services'
 import { AuthContext } from "../../contexts/auth.context"
 import './LoginForm.css'
-
+import FormError from "../FormError/FormError"
 
 
 const LoginForm = () => {
 
+    const [errors, setErrors] = useState([])
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
@@ -34,7 +35,8 @@ const LoginForm = () => {
                 authenticateUser()
                 navigate('/inicio')
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors([err.response.data.message]))
+
     }
 
     const { password, email } = loginData
@@ -56,6 +58,7 @@ const LoginForm = () => {
                     <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
                 </Form.Group>
 
+                {errors.length > 0 && <FormError>{errors.map((elm, i) => <p key={i}>{elm}</p>)}</FormError>}
                 <div className="d-grid">
                     <Button className="bg-custom" type="submit">entra</Button>
                 </div>

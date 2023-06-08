@@ -17,7 +17,7 @@ const JobEditPage = () => {
         <Container>
             <Col className='offset-2 p-1' md={8}>
                 <h1 className="estas-editando" >Estás editando el puesto:</h1>
-                <h4 className="mb-5 mx-5"> <em>{jobTitle}</em></h4>
+                <h4 className="mb-5 mx-5"> {jobTitle}</h4>
                 <JobEditForm onJobTitleChange={handleJobTitleChange} />
             </Col>
         </Container >

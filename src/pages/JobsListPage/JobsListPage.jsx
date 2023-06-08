@@ -6,8 +6,8 @@ import jobService from '../../services/job.services'
 import Loader from '../../components/Loader/Loader'
 import JobSearch from '../../components/JobSearch/JobSearch'
 import { Col, Row } from "react-bootstrap"
+import { sortByStartDate } from '../../utils/sortStartDate-utils'
 import './JobsListPage.css'
-
 
 
 const JobsListPage = () => {
@@ -18,7 +18,7 @@ const JobsListPage = () => {
 
     useEffect(() => {
         loadJobs()
-    }, [/* deleteJobId */])
+    }, [])
 
 
     const loadJobs = () => {
@@ -28,8 +28,9 @@ const JobsListPage = () => {
             jobService
                 .getAllJobs()
                 .then(({ data }) => {
-                    setJobs(data)
-                    setFilteredJobs(data)
+                    const sortedJobs = sortByStartDate(data)
+                    setJobs(sortedJobs)
+                    setFilteredJobs(sortedJobs)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -42,8 +43,9 @@ const JobsListPage = () => {
                     const categoryJobs = data.filter(
                         (job) => job.jobCategory === userJobCategory
                     )
-                    setJobs(categoryJobs)
-                    setFilteredJobs(categoryJobs)
+                    const sortedJobs = sortByStartDate(categoryJobs)
+                    setJobs(sortedJobs)
+                    setFilteredJobs(sortedJobs)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -60,9 +62,7 @@ const JobsListPage = () => {
     }
 
 
-
     const handleDeleteJob = (jobId) => {
-
         jobService
             .deleteJob(jobId)
             .then(() => {
@@ -78,21 +78,24 @@ const JobsListPage = () => {
     return (
 
         <Container>
-            <Row>
-                <Col md={{ span: 6, offset: 3 }}>
+
+            <Row className='mb-3 p-2'>
+                <Col lg={{ span: 8, offset: 2 }}>
                     <JobSearch filterJobByLocation={filterJobByLocation} />
                 </Col>
             </Row>
-            <Row className='m-2 p-2'>
-                {!filteredJobs ?
-                    <Loader />
-                    :
-                    filteredJobs.map((elm) => <JobListCard {...elm} key={elm._id} handleDeleteJob={handleDeleteJob} />)
-                }
-            </Row>
+            {filteredJobs.length === 0 ? (
+                <Loader />
+            ) : (
+                filteredJobs.map((elm) => (
+                    <Row key={elm._id} className='mb-3 p-2'>
+                        <JobListCard {...elm} handleDeleteJob={handleDeleteJob} />
+                    </Row>
+                ))
+            )}
+
         </Container>
     )
 }
 
 export default JobsListPage
-

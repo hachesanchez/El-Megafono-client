@@ -21,7 +21,6 @@ const JobListCard = ({ title, startDate, location, owner, _id, handleDeleteJob }
                         <Link to={`/empleo/${_id}`}>
                             <Card.Title className='m-3'><h3>{title}</h3></Card.Title>
                         </Link>
-                        {/*  <SaveJob /> */}
                     </div>
 
                     <Card.Body>
