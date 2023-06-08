@@ -3,16 +3,18 @@ import { Container, Col } from "react-bootstrap"
 import './ProfileEditPage.css'
 
 
-
 const ProfileEditPage = () => {
 
+
     return (
+
         <Container>
-            <h1 className="mb-5">Aquí puedes editar o completar tu perfil, TODO METER USER </h1>
 
             <Col className='offset-2 p-1' md={8}>
+                <h1 className="estas-editando mb-5 " >Aquí puedes editar o completar tu perfil  </h1>
                 <EditCandidateForm />
             </Col>
+
         </Container>
     )
 }

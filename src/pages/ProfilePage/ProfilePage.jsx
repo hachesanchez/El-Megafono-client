@@ -10,8 +10,8 @@ import ExperienceList from "../ExperienceListPage/ExperienceListPage"
 import ExperienceCreateForm from "../../components/ExperienceCreateForm/ExperienceCreateForm"
 import SavedJobsPage from "../SavedJobsPage/SavedJobsPage"
 import JobOwnedList from "../JobOwnedList/JobOwnedList"
+import SwitchAvailability from "../../components/SwitchAvailability/SwitchAvailability"
 import './ProfilePage.css'
-
 
 
 const ProfilePage = () => {
@@ -24,6 +24,8 @@ const ProfilePage = () => {
     const [showModal, setShowModal] = useState(false)
     const [ownedJobs, setOwnedJobs] = useState()
     const [deletedOwnJobId, setDeletedOwnJob] = useState(null)
+    const [availability, setAvailability] = useState(false)
+
 
 
     useEffect(() => {
@@ -41,6 +43,7 @@ const ProfilePage = () => {
             .getProfile(user._id)
             .then(({ data }) => {
                 setProfileUser(data)
+                setAvailability(data.availability)
             })
             .catch((error) => {
                 console.log(error)
@@ -61,8 +64,8 @@ const ProfilePage = () => {
     }
 
 
+    // TODO: enganchar a nuevo servicio getuserexperiences
     const updateExperiences = () => {
-        // TODO: enganchar a nuevo servicio getuserexperiences
         experiencesService
             .getAllExperiences()
             .then(({ data }) => {
@@ -113,6 +116,20 @@ const ProfilePage = () => {
     }
 
 
+    const handleAvailabilityToggle = () => {
+        const userId = user._id;
+        const updatedData = { availability: !availability };
+
+        userService
+            .editProfile(userId, updatedData)
+            .then(response => {
+                setAvailability(response.data.availability);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
 
 
     return (
@@ -127,8 +144,9 @@ const ProfilePage = () => {
                     <div className="d-grid gap-1 align-items-center">
 
                         {
-                            user.role === 'PROFESIONAL' || user.role === 'ADMIN' &&
+                            (user.role === 'PROFESIONAL' || user.role === 'ADMIN') &&
                             <>
+                                <SwitchAvailability availability={availability} setAvailability={setAvailability} />
                                 <Link className="w-100" to={`/profesionales/${user?._id}`}>
                                     <Button variant="outline-dark" className="w-100" size="sm" >Ver mi perfil público</Button>
                                 </Link>
@@ -149,7 +167,7 @@ const ProfilePage = () => {
             </Row>
 
             {
-                user.role === 'ORGANIZACIÓN' || user.role === 'ADMIN' ? (
+                (user.role === 'ORGANIZACIÓN' || user.role === 'ADMIN') ? (
                     <>
                         <Row md={9} >
                             <h4 className="mb-4 mx-4 ofertas-tilte">Mis ofertas publicadas</h4>
@@ -163,7 +181,7 @@ const ProfilePage = () => {
             }
 
             {
-                user.role === 'PROFESIONAL' || user.role === 'ADMIN' ? (
+                (user.role === 'PROFESIONAL' || user.role === 'ADMIN') ? (
                     <>
                         <Row>
                             <Col xs={6}>
@@ -189,8 +207,6 @@ const ProfilePage = () => {
                     <ExperienceCreateForm closeModal={() => setShowModal(false)} updateExperiences={updateExperiences} />
                 </Modal.Body>
             </Modal>
-
-
 
         </Container >
     )

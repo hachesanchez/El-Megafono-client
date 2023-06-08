@@ -15,7 +15,7 @@
 }
 
 .h5-contact {
-    color: #9E9800;
+    color: aquamarine;
 }
 
 .volver {
@@ -24,4 +24,17 @@
 
 .volver:hover {
     color: #EBE215;
+}
+
+.social-media {
+    background-color: rgba(255, 255, 255, 0.735);
+    padding: 20px;
+}
+
+.contact-icon {
+    height: 25px;
+}
+
+.linkedin-icon {
+    height: 30px;
 }

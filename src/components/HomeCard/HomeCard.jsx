@@ -1,11 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Col, Container, Row, Image, Card } from 'react-bootstrap';
-import {
-    HOMEPAGE_WEARE_SECTION_ARRAY,
-    HOMEPAGE_WHAT_SECTION_ARRAY,
-    HOMEPAGE_INTRO_SECTION_ARRAY
-}
-    from '../../consts/info-consts';
 import headerImg from '../../assets/images/Header-3.jpg'
 import './HomeCard.css';
 
@@ -25,7 +19,8 @@ const HomeCard = () => {
                         <Card className="text-center c1 mb-2" style={{ border: 'none', padding: '30px' }}>
                             <Card.Body>
                                 <Card.Text className='home-text'>
-                                    {HOMEPAGE_INTRO_SECTION_ARRAY}
+                                    <p> Ya hemos puesto en contacto a más de 3000 profesionales con
+                                        organizaciones</p>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -55,10 +50,38 @@ const HomeCard = () => {
             </Container >
 
             <section className='weAre-section'>
-                {HOMEPAGE_WEARE_SECTION_ARRAY}
+                <p className='weAre-text'>
+                    ¡Bienvenido a nuestra plataforma de conexión profesional! Somos una comunidad en línea diseñada para unir
+                    a profesionales de diversos campos con organizaciones
+                    y entidades del tercer sector que buscan personas con una sensibilidad especial.
+                </p>
             </section>
             <section className='what-section'>
-                {HOMEPAGE_WHAT_SECTION_ARRAY}
+                <p className='what-text'>
+                    Creemos en el poder de la colaboración y la sinergia entre profesionales y organizaciones comprometidas
+                    con un impacto positivo en la sociedad. Únete a nuestra comunidad hoy mismo y descubre nuevas
+                    oportunidades, conexiones significativas y proyectos inspiradores. Juntos, podemos marcar la diferencia
+                    y construir un mundo mejor.
+                    <br />
+                    <br />
+                    Aquí podrás encontrar una amplia gama de profesionales calificados, desde expertos en desarrollo comunitario
+                    hasta especialistas en educación inclusiva, pasando por profesionales de la salud, servicios sociales, medio ambiente
+                    y mucho más. Nuestro objetivo es crear un espacio donde los talentos y las pasiones se combinen con las necesidades
+                    y las misiones de las organizaciones del tercer sector.
+                    <br />
+                    <br />
+                    Para los profesionales, ofrecemos una plataforma fácil de usar que te permitirá mostrar tu experiencia,
+                    habilidades y logros destacados. Podrás crear un perfil completo, destacar tus áreas de especialización y
+                    conectarte con organizaciones que compartan tus valores y objetivos. Ya sea que busques una oportunidad laboral a tiempo
+                    completo, un proyecto a corto plazo o voluntariado, aquí encontrarás un espacio para hacer brillar tu talento y contribuir
+                    a causas significativas.
+                    <br />
+                    <br />
+                    Para las organizaciones y entidades del tercer sector, ofrecemos un directorio integral de profesionales con una
+                    sensibilidad especial en una amplia gama de áreas. Podrás buscar perfiles basados en criterios específicos, como habilidades,
+                    experiencia, ubicación y afinidad con tu misión. Nuestra plataforma te brindará acceso a una red de profesionales comprometidos
+                    y apasionados que pueden fortalecer tu equipo y ayudarte a lograr tus objetivos sociales.
+                </p>
             </section>
 
         </div >
