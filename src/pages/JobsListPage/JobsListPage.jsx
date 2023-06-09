@@ -3,6 +3,7 @@ import JobListCard from '../../components/JobListCard/JobListCard'
 import { Container } from "react-bootstrap"
 import { AuthContext } from '../../contexts/auth.context'
 import jobService from '../../services/job.services'
+import userService from "../../services/user.services"
 import Loader from '../../components/Loader/Loader'
 import JobSearch from '../../components/JobSearch/JobSearch'
 import { Col, Row } from "react-bootstrap"
@@ -14,15 +15,19 @@ const JobsListPage = () => {
     const { user } = useContext(AuthContext)
     const [jobs, setJobs] = useState([])
     const [filteredJobs, setFilteredJobs] = useState([])
+    /* const [userByCategory, setuserByCategory] = useState([]) */
 
 
     useEffect(() => {
         loadJobs()
+        /* loadUser() */
     }, [])
 
 
     const loadJobs = () => {
         const userJobCategory = user.jobCategory
+
+        /* const userJobCategory = userByCategory?.jobCategory; */
 
         if (user.role === "ADMIN") {
             jobService
@@ -36,6 +41,20 @@ const JobsListPage = () => {
                     console.log(error)
                 })
         } else {
+            /*  jobService
+                 .getAllJobs({ jobCategory: userJobCategory })
+                 .then(({ data }) => {
+                     const categoryJobs = data.filter(
+                         (job) => job.jobCategory === userJobCategory
+                     )
+                     const sortedJobs = sortByStartDate(categoryJobs)
+                     console.log('-----', sortedJobs)
+                     setJobs(sortedJobs)
+                     setFilteredJobs(sortedJobs)
+                 })
+                 .catch((error) => {
+                     console.log(error)
+                 }) */
             jobService
                 // TODO: CREAR SERVICIO getJobsByCategory(category)
                 .getAllJobs({ jobCategory: userJobCategory })
@@ -73,6 +92,19 @@ const JobsListPage = () => {
                 console.log(error)
             })
     }
+
+
+    /*   const loadUser = () => {
+          userService
+              .getProfile(user._id)
+              .then(({ data }) => {
+                  console.log(data)
+                  setuserByCategory(data)
+              })
+              .catch((error) => {
+                  console.log(error)
+              })
+      } */
 
 
     return (
