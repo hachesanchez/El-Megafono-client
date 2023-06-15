@@ -8,7 +8,6 @@ import { JOB_CATEGORIES_ARRAY } from '../../consts/jobs-consts'
 
 
 
-// TODO OPCIONAL: GRANULARIZAR COMPONENTE
 
 
 const EditCandidateForm = ({ }) => {

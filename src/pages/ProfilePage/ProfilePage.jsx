@@ -64,7 +64,6 @@ const ProfilePage = () => {
     }
 
 
-    // TODO: enganchar a nuevo servicio getuserexperiences
     const updateExperiences = () => {
         experiencesService
             .getAllExperiences()
@@ -215,22 +214,3 @@ const ProfilePage = () => {
 
 export default ProfilePage
 
-
-{/* TODO: <Col><p> 2. COMPONENTE CARD DE OFERTAS APLICADAS</p> </Col> */ }
-
-/* const [showModalProfile, setShowModalProfile] = useState(false) */
-{/* TODO: ESTA MODAL NO FUNCIONA, NO CARGA LOS DATOS YA INTRODUCIDOS, NI DESPLIEGA OPCIONES DE PROFESIONAL */ }
-{/*   <Modal show={showModalProfile} onHide={() => setShowModalProfile(false)}>
-    <Modal.Header closeButton>
-        <Modal.Title>Completar mi perfil</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-        <EditCandidateForm closeModal={() => setShowModalProfile(false)} />
-    </Modal.Body>
-</Modal> */}
-
-{/*    <Button variant="outline-dark" 
-            className="w-100" 
-            size="sm" 
-            onClick={() => setShowModalProfile(true)} >Completar mi perfil
-            </Button> */}

@@ -70,10 +70,6 @@ const CandidateCardDetails = ({ user: profileUser }) => {
                                     </div>
                                 )}
                             </Col>
-                            {/*  <Col md={1}>
-                                <FavouriteCandidate />
-                            </Col> */}
-
                         </Row>
                     </Col>
 
